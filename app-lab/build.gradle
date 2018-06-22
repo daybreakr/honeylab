@@ -1,0 +1,25 @@
+project.ext.applicationId = "com.honeycomb.lab"
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId project.applicationId
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode project.versionCode
+        versionName project.version
+        testInstrumentationRunner runners.androidJunit
+    }
+}
+
+dependencies {
+    implementation deps.support.appcompat
+
+    testImplementation deps.test.junit
+
+    androidTestImplementation deps.test.androidJunit
+}
+
+apply from: gradlePlugins.projectInfo
