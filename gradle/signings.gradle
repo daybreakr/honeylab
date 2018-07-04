@@ -1,0 +1,69 @@
+def keystore = new Properties()
+file("${rootDir}/keystore/keystore.properties").withInputStream { stream ->
+    keystore.load(stream)
+}
+
+android {
+    signingConfigs {
+        aosp {
+            storeFile file(keystore.KEYSTORE_FILE)
+            storePassword keystore.KEYSTORE_PASSWORD
+            keyAlias keystore.KEY_ALIAS_AOSP
+            keyPassword keystore.KEY_ALIAS_PASSWORD
+        }
+
+        doogee {
+            storeFile file(keystore.KEYSTORE_FILE)
+            storePassword keystore.KEYSTORE_PASSWORD
+            keyAlias keystore.KEY_ALIAS_DOOGEE
+            keyPassword keystore.KEY_ALIAS_PASSWORD
+        }
+
+        gingerbread {
+            storeFile file(keystore.KEYSTORE_FILE)
+            storePassword keystore.KEYSTORE_PASSWORD
+            keyAlias keystore.KEY_ALIAS_GINGERBREAD
+            keyPassword keystore.KEY_ALIAS_PASSWORD
+        }
+
+        dandan {
+            storeFile file(keystore.KEYSTORE_FILE)
+            storePassword keystore.KEYSTORE_PASSWORD
+            keyAlias keystore.KEY_ALIAS_DANDAN
+            keyPassword keystore.KEY_ALIAS_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig null
+        }
+    }
+
+    def signingDimension = 'signing'
+
+    def flavors = new ArrayList()
+    if (flavorDimensionList != null) {
+        flavors.addAll(flavorDimensionList)
+    }
+    flavors.add(signingDimension)
+
+    flavorDimensions flavors.toArray(new String[0])
+
+    productFlavors {
+        aosp {
+            dimension signingDimension
+            signingConfig signingConfigs.aosp
+        }
+
+        doogee {
+            dimension signingDimension
+            signingConfig signingConfigs.doogee
+        }
+
+        dandan {
+            dimension signingDimension
+            signingConfig signingConfigs.dandan
+        }
+    }
+}

@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app-lab" />
+            <option value="$PROJECT_DIR$/app-systemlab" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
