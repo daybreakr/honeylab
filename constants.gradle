@@ -27,7 +27,8 @@ ext {
                     espresso: 'com.android.support.test.espresso:espresso-core:3.0.2',
             ],
             support: [
-                    appcompat: "com.android.support:appcompat-v7:${versions.supportLibrary}",
+                annotations: "com.android.support:support-annotations:${versions.supportLibrary}",
+                appcompat: "com.android.support:appcompat-v7:${versions.supportLibrary}",
                     cardview: "com.android.support:cardview-v7:${versions.supportLibrary}",
                     recyclerview: "com.android.support:recyclerview-v7:${versions.supportLibrary}",
             ],

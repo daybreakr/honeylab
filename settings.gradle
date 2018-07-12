@@ -1,2 +1,4 @@
 include ':app-lab'
 include ':app-systemlab'
+
+include ':mod-keepalive'

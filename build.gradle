@@ -18,5 +18,6 @@ allprojects {
         jcenter()
     }
 
-    version versionName
+    version = versionName
+    ext.versionCode = versionCode
 }
