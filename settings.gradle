@@ -3,5 +3,6 @@ include ':app-systemlab'
 
 include ':lib-common'
 
+include ':mod-cardiograph'
 include ':mod-heartbeat'
 include ':mod-keepalive'
