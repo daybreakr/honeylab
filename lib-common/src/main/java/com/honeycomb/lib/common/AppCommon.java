@@ -1,18 +1,22 @@
-package com.honeycomb.mod.keepalive.debug;
+package com.honeycomb.lib.common;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
-public class Sdk {
-    private static volatile Sdk sInstance;
+public class AppCommon {
+    @SuppressLint("StaticFieldLeak")
+    // AppCommon represents the application, it's OK to hold the applications Context here.
+    private static volatile AppCommon sInstance;
+
     private static final Object sLock = new Object();
 
     private final Context mApplicationContext;
 
-    private Sdk(Context context) {
+    private AppCommon(Context context) {
         mApplicationContext = context.getApplicationContext();
     }
 
-    public static Sdk getInstance() {
+    public static AppCommon getInstance() {
         synchronized (sLock) {
             if (sInstance == null) {
                 throw new IllegalStateException("Business SDK is not initialized in the process. "
@@ -27,7 +31,7 @@ public class Sdk {
             if (sInstance != null) {
                 return;
             }
-            sInstance = new Sdk(context);
+            sInstance = new AppCommon(context);
         }
 
         sInstance.initialize();
@@ -38,6 +42,6 @@ public class Sdk {
     }
 
     private void initialize() {
-        SdkStartupRegistry.start();
+        // TODO: Use annotation processor to generate the AppCommonRegistry class and start it.
     }
 }

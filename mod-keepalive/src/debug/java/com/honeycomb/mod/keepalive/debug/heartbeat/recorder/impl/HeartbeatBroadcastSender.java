@@ -3,7 +3,7 @@ package com.honeycomb.mod.keepalive.debug.heartbeat.recorder.impl;
 import android.content.Context;
 import android.content.Intent;
 
-import com.honeycomb.mod.keepalive.debug.Sdk;
+import com.honeycomb.lib.common.AppCommon;
 import com.honeycomb.mod.keepalive.debug.heartbeat.HeartbeatEvent;
 import com.honeycomb.mod.keepalive.debug.heartbeat.HeartbeatListener;
 
@@ -17,7 +17,7 @@ public class HeartbeatBroadcastSender implements HeartbeatListener {
 
     @Override
     public void onHeartbeat(HeartbeatEvent heartbeat) {
-        Context context = Sdk.getInstance().getApplicationContext();
+        Context context = AppCommon.getInstance().getApplicationContext();
 
         Intent intent = new Intent(ACTION_HEARTBEAT);
         intent.putExtra(EXTRA_PACKAGE_NAME, context.getPackageName());

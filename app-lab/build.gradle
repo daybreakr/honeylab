@@ -17,9 +17,9 @@ android {
 }
 
 dependencies {
-    implementation deps.support.appcompat
-
+    implementation project(":lib-common")
     implementation project(":mod-keepalive")
+    implementation deps.support.appcompat
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit

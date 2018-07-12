@@ -14,11 +14,3 @@ android {
         testInstrumentationRunner runners.androidJunit
     }
 }
-
-dependencies {
-    implementation project(":lib-common")
-    implementation deps.support.annotations
-
-    testImplementation deps.test.junit
-    androidTestImplementation deps.test.androidJunit
-}
