@@ -1,9 +1,10 @@
 include ':app-lab'
 include ':app-systemlab'
+
 include ':lab-common'
+include ':lab-cardiograph'
 
 include ':lib-common'
 
-include ':mod-cardiograph'
 include ':mod-heartbeat'
 include ':mod-keepalive'

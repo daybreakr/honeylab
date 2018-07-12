@@ -1,4 +1,4 @@
-package com.honeycomb.mod.cardiograph;
+package com.honeycomb.lab.cardiograph;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.honeycomb.mod.cardiograph.test", appContext.getPackageName());
+        assertEquals("com.honeycomb.lab.cardiograph.test", appContext.getPackageName());
     }
 }

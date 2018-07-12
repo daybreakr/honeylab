@@ -13,10 +13,7 @@ android {
 }
 
 dependencies {
-    api deps.support.appcompat
-    api deps.support.design
-    api deps.honeycomb.nav
-    api deps.honeycomb.navImpl
+    implementation project(":lab-common")
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit

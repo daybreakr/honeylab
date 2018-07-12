@@ -1,4 +1,4 @@
-package com.honeycomb.mod.cardiograph;
+package com.honeycomb.lab.cardiograph;
 
 import org.junit.Test;
 
