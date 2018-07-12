@@ -5,39 +5,55 @@ ext {
     gradleDir = "${rootDir}/gradle"
 
     gradlePlugins = [
-            android: "com.android.tools.build:gradle:3.1.3",
-            projectInfo: "${gradleDir}/project-info.gradle",
-            mavenLocalPublish: "${gradleDir}/maven-local-publish.gradle",
-            signings: "${gradleDir}/signings.gradle",
+        android: "com.android.tools.build:gradle:3.1.3",
+        projectInfo: "${gradleDir}/project-info.gradle",
+        mavenLocalPublish: "${gradleDir}/maven-local-publish.gradle",
+        signings: "${gradleDir}/signings.gradle",
     ]
 
     versions = [
-            compileSdk: 27,
-            minSdk: 14,
-            targetSdk: 27,
+        compileSdk: 27,
+        minSdk: 14,
+        targetSdk: 27,
 
-            supportLibrary: '27.1.1',
-            butterKnife: '8.8.1',
+        supportLibrary: '27.1.1',
+        honeycombLibrary: '0.0.10',
+        butterKnife: '8.8.1',
     ]
 
     deps = [
-            test: [
-                    junit: 'junit:junit:4.12',
-                    androidJunit: 'com.android.support.test:runner:1.0.2',
-                    espresso: 'com.android.support.test.espresso:espresso-core:3.0.2',
-            ],
+        test: [
+            junit: 'junit:junit:4.12',
+            androidJunit: 'com.android.support.test:runner:1.0.2',
+            espresso: 'com.android.support.test.espresso:espresso-core:3.0.2',
+        ],
+        support: [
+            annotations: "com.android.support:support-annotations:${versions.supportLibrary}",
+            appcompat: "com.android.support:appcompat-v7:${versions.supportLibrary}",
+            cardview: "com.android.support:cardview-v7:${versions.supportLibrary}",
+            recyclerview: "com.android.support:recyclerview-v7:${versions.supportLibrary}",
+            design: "com.android.support:design:${versions.supportLibrary}",
+        ],
+        honeycomb: [
+            basement: "com.honeycomb:honeycomb-basement:$versions.honeycombLibrary",
+            common: "com.honeycomb:honeycomb-common:$versions.honeycombLibrary",
+            crash: "com.honeycomb:honeycomb-crash:$versions.honeycombLibrary",
+            config: "com.honeycomb:honeycomb-config:$versions.honeycombLibrary",
+            driller: "com.honeycomb:honeycomb-driller:$versions.honeycombLibrary",
+            nav: "com.honeycomb:honeycomb-nav:$versions.honeycombLibrary",
+            navImpl: "com.honeycomb:honeycomb-nav-impl:$versions.honeycombLibrary",
             support: [
-                annotations: "com.android.support:support-annotations:${versions.supportLibrary}",
-                appcompat: "com.android.support:appcompat-v7:${versions.supportLibrary}",
-                    cardview: "com.android.support:cardview-v7:${versions.supportLibrary}",
-                    recyclerview: "com.android.support:recyclerview-v7:${versions.supportLibrary}",
+                gson: "com.honeycomb.support:support-gson:2.8.5"
             ],
-            butterknife: "com.jakewharton:butterknife:${versions.butterKnife}",
-            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
+        ],
+        butterknife: [
+            runtime: "com.jakewharton:butterknife:${versions.butterKnife}",
+            compiler: "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
+        ],
     ]
 
     runners = [
-            androidJunit: 'android.support.test.runner.AndroidJUnitRunner',
+        androidJunit: 'android.support.test.runner.AndroidJUnitRunner',
     ]
 }
 

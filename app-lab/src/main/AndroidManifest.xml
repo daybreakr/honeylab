@@ -12,6 +12,6 @@
         <meta-data
             android:name="com.honeycomb.lab.MAIN_FRAGMENT"
             android:value="com.honeycomb.lab.Playground" />
-        
+
     </application>
 </manifest>
