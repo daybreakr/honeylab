@@ -3,16 +3,28 @@ package com.honeycomb.mod.heartbeat.recorder;
 import com.honeycomb.mod.heartbeat.Heartbeat;
 
 public class HeartbeatRecorder {
+    private static HeartbeatRecorderOptions sOptions = new HeartbeatRecorderOptions();
+
     private static volatile HeartbeatRecorder sInstance;
 
-    private HeartbeatRecorder() {
+    private final HeartbeatRecorderOptions mOptions;
+
+    private HeartbeatRecorder(HeartbeatRecorderOptions options) {
+        mOptions = options;
+    }
+
+    // Set before initialize
+    public static void setOptions(HeartbeatRecorderOptions options) {
+        if (options != null) {
+            sOptions = options;
+        }
     }
 
     public static HeartbeatRecorder getInstance() {
         if (sInstance == null) {
             synchronized (HeartbeatRecorder.class) {
                 if (sInstance == null) {
-                    sInstance = new HeartbeatRecorder();
+                    sInstance = new HeartbeatRecorder(sOptions);
                 }
             }
         }
@@ -21,7 +33,16 @@ public class HeartbeatRecorder {
 
     public void start() {
         Heartbeat heartbeat = Heartbeat.getInstance();
-        HeartbeatRecorderRegistry.register(heartbeat);
+
+        if (mOptions.printLog) {
+            HeartbeatRecorderRegistry.registerLogRecorder(heartbeat);
+        }
+        if (mOptions.sendHeartbeatBroadcast) {
+            HeartbeatRecorderRegistry.registerBroadcastRecorder(heartbeat);
+        }
+        if (mOptions.saveToFile) {
+            HeartbeatRecorderRegistry.registerFileRecorder(heartbeat);
+        }
 
         heartbeat.flush();
     }
