@@ -1,11 +1,11 @@
-package com.honeycomb.mod.keepalive.debug.heartbeat.recorder.impl;
+package com.honeycomb.mod.heartbeat.recorder.impl;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.honeycomb.lib.common.AppCommon;
-import com.honeycomb.mod.keepalive.debug.heartbeat.HeartbeatEvent;
-import com.honeycomb.mod.keepalive.debug.heartbeat.HeartbeatListener;
+import com.honeycomb.mod.heartbeat.HeartbeatEvent;
+import com.honeycomb.mod.heartbeat.HeartbeatListener;
 
 public class HeartbeatBroadcastSender implements HeartbeatListener {
     private static final String PERMISSION_RECEIVE_HEARTBEAT = "com.honeycomb.permission.RECEIVE_HEARTBEAT";

@@ -1,6 +1,6 @@
-package com.honeycomb.mod.keepalive.debug.heartbeat.recorder;
+package com.honeycomb.mod.heartbeat.recorder;
 
-import com.honeycomb.mod.keepalive.debug.heartbeat.Heartbeat;
+import com.honeycomb.mod.heartbeat.Heartbeat;
 
 public class HeartbeatRecorder {
     private static volatile HeartbeatRecorder sInstance;

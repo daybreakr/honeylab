@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.debug.heartbeat;
+package com.honeycomb.mod.heartbeat;
 
 public interface HeartbeatPublisher {
 

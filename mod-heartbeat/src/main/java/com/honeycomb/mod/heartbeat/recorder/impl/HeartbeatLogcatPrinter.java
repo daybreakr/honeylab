@@ -1,9 +1,9 @@
-package com.honeycomb.mod.keepalive.debug.heartbeat.recorder.impl;
+package com.honeycomb.mod.heartbeat.recorder.impl;
 
 import android.util.Log;
 
-import com.honeycomb.mod.keepalive.debug.heartbeat.HeartbeatEvent;
-import com.honeycomb.mod.keepalive.debug.heartbeat.HeartbeatListener;
+import com.honeycomb.mod.heartbeat.HeartbeatEvent;
+import com.honeycomb.mod.heartbeat.HeartbeatListener;
 
 import java.util.Calendar;
 
