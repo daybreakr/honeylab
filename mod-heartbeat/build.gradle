@@ -21,3 +21,5 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit
 }
+
+apply from: gradlePlugins.projectInfo

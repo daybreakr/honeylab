@@ -1,5 +1,6 @@
 include ':app-lab'
 include ':app-systemlab'
+include ':lab-common'
 
 include ':lib-common'
 

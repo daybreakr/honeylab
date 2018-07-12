@@ -9,13 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        <meta-data
+            android:name="com.honeycomb.lab.MAIN_FRAGMENT"
+            android:value="com.honeycomb.lab.Playground" />
+        
     </application>
 </manifest>
