@@ -7,18 +7,15 @@ public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
 
     private Pacemaker mPacemaker;
     private final HeartbeatPublisher mPublisher;
-    private final HeartbeatBufferPublisher mBuffer;
 
     private long mLastHeartbeat;
 
     private Heartbeat(HeartbeatOptions options) {
-        setPacemaker(new Pacemaker(options.heartbeatIntervalSeconds));
+        setPacemaker(new Pacemaker(options.heartbeatInterval));
 
         if (options.useBuffer) {
-            mBuffer = new HeartbeatBufferPublisher();
-            mPublisher = mBuffer;
+            mPublisher = new HeartbeatBufferPublisher();
         } else {
-            mBuffer = null;
             mPublisher = new HeartbeatPublisherImpl();
         }
     }
@@ -39,6 +36,10 @@ public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
             }
         }
         return sInstance;
+    }
+
+    public long getHeartbeatInterval() {
+        return getPacemaker().getInterval();
     }
 
     public Pacemaker getPacemaker() {
@@ -72,8 +73,8 @@ public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
     }
 
     public void flush() {
-        if (mBuffer != null) {
-            mBuffer.flush();
+        if (mPublisher instanceof HeartbeatBufferPublisher) {
+            ((HeartbeatBufferPublisher) mPublisher).flush();
         }
     }
 

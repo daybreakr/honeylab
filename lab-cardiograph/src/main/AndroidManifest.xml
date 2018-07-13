@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.honeycomb.lab.cardiograph">
 
+    <uses-permission android:name="com.honeycomb.permission.RECEIVE_HEARTBEAT" />
+
     <application>
         <activity
             android:name=".CardiographActivity"

@@ -14,22 +14,22 @@ class Pacemaker {
 
     private final ScheduledExecutorService mScheduler;
 
-    private int mInterval;
+    private long mInterval;
     private PacingCallback mCallback;
 
     private final AtomicBoolean mStarted = new AtomicBoolean(false);
 
-    Pacemaker(int interval) {
+    Pacemaker(long interval) {
         setInterval(interval);
 
         mScheduler = Executors.newSingleThreadScheduledExecutor();
     }
 
-    int getInterval() {
+    long getInterval() {
         return mInterval;
     }
 
-    void setInterval(int millis) {
+    void setInterval(long millis) {
         mInterval = millis;
     }
 
@@ -62,14 +62,15 @@ class Pacemaker {
             return;
         }
 
-        onPacing();
-
+        // Since pacing might block for a while, schedule next first.
         mScheduler.schedule(new Runnable() {
             @Override
             public void run() {
                 pace();
             }
         }, mInterval, TimeUnit.MILLISECONDS);
+
+        onPacing();
     }
 
     private void onPacing() {

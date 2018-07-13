@@ -3,7 +3,7 @@ package com.honeycomb.mod.heartbeat;
 import java.util.LinkedList;
 import java.util.List;
 
-class HeartbeatBufferPublisher implements HeartbeatListener, HeartbeatPublisher {
+class HeartbeatBufferPublisher implements HeartbeatPublisher {
     private final HeartbeatPublisher mPublisher = new HeartbeatPublisherImpl();
 
     private List<HeartbeatEvent> mPendingHeartbeats;
@@ -32,11 +32,6 @@ class HeartbeatBufferPublisher implements HeartbeatListener, HeartbeatPublisher 
 
     @Override
     public void publishHeartbeatEvent(HeartbeatEvent heartbeat) {
-        mPublisher.publishHeartbeatEvent(heartbeat);
-    }
-
-    @Override
-    public void onHeartbeat(HeartbeatEvent heartbeat) {
         if (!mStarted) {
             if (mPendingHeartbeats == null) {
                 mPendingHeartbeats = new LinkedList<>();
@@ -45,7 +40,7 @@ class HeartbeatBufferPublisher implements HeartbeatListener, HeartbeatPublisher 
             return;
         }
 
-        publishHeartbeatEvent(heartbeat);
+        mPublisher.publishHeartbeatEvent(heartbeat);
     }
 
     private void flushPendingHeartbeats() {

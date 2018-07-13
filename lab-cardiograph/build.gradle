@@ -14,6 +14,10 @@ android {
 
 dependencies {
     implementation project(":lab-common")
+    implementation project(":lib-common")
+
+    implementation deps.support.recyclerview
+    implementation deps.support.cardview
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit
