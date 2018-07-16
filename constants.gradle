@@ -50,6 +50,7 @@ ext {
             runtime: "com.jakewharton:butterknife:${versions.butterKnife}",
             compiler: "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
         ],
+        andPermission: "com.yanzhenjie:permission:2.0.0-rc11",
     ]
 
     runners = [

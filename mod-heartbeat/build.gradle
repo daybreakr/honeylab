@@ -18,6 +18,7 @@ android {
 dependencies {
     implementation project(":lib-common")
     implementation deps.honeycomb.basement
+    implementation deps.andPermission
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit

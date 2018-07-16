@@ -1,7 +1,8 @@
-include ':app-lab', ':lab-main'
+include ':app-lab'
 include ':app-systemlab'
 
 include ':lab-common'
+include ':lab-main'
 include ':lab-cardiograph'
 
 include ':lib-common'
