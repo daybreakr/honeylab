@@ -1,0 +1,10 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation project(":lib-annotation")
+    implementation deps.javapoet
+    implementation deps.auto.service
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

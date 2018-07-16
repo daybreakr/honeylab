@@ -11,6 +11,6 @@ public class HoneylabApplication extends Application {
         super.onCreate();
         AppCommon.initialize(this);
 
-        AppCommonRegistry.start();
+//        AppCommonRegistry.start();
     }
 }
