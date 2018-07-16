@@ -20,10 +20,9 @@ android {
 
 dependencies {
     implementation project(":lab-common")
+    implementation project(":lab-main")
 
     implementation project(":lib-common")
-
-    implementation deps.support.appcompat
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit

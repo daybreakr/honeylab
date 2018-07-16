@@ -1,4 +1,4 @@
-package com.honeycomb.lab.common;
+package com.honeycomb.lab;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.honeycomb.lab.common.util.Constants;
-import com.honeycomb.lab.common.util.SupportFragmentUtils;
+import com.honeycomb.lab.main.R;
+import com.honeycomb.lab.util.Constants;
+import com.honeycomb.lab.util.SupportFragmentUtils;
 import com.honeycomb.nav.INavPresenter;
 import com.honeycomb.nav.INavigation;
 import com.honeycomb.nav.NavigationFactory;

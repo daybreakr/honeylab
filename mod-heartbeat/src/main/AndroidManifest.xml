@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.honeycomb.mod.heartbeat">
 
+    <!-- Heartbeat file needs these permissions to record heartbeat in external storage -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- Heartbeat broadcast sender sends heartbeat broadcast with this permission -->
     <permission android:name="com.honeycomb.permission.RECEIVE_HEARTBEAT" />
 
 </manifest>

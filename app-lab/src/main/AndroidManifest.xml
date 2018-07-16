@@ -5,9 +5,7 @@
         android:name=".HoneylabApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme">
+        android:label="@string/app_name">
 
         <meta-data
             android:name="com.honeycomb.lab.MAIN_FRAGMENT"

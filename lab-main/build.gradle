@@ -13,8 +13,8 @@ android {
 }
 
 dependencies {
-    api deps.support.appcompat
-    api deps.support.design
-}
+    implementation project(":lab-common")
 
-apply from: gradlePlugins.projectInfo
+    implementation deps.honeycomb.nav
+    implementation deps.honeycomb.navImpl
+}

@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/app-systemlab" />
             <option value="$PROJECT_DIR$/lab-cardiograph" />
             <option value="$PROJECT_DIR$/lab-common" />
+            <option value="$PROJECT_DIR$/lab-main" />
             <option value="$PROJECT_DIR$/lib-common" />
             <option value="$PROJECT_DIR$/mod-heartbeat" />
             <option value="$PROJECT_DIR$/mod-keepalive" />

@@ -18,14 +18,13 @@ android {
 
 dependencies {
     implementation project(":lab-common")
+    implementation project(":lab-main")
     implementation project(":lab-cardiograph")
 
     implementation project(":lib-common")
 
     implementation project(":mod-heartbeat")
     implementation project(":mod-keepalive")
-
-    implementation deps.support.appcompat
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit

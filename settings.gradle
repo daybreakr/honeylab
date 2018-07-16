@@ -1,4 +1,4 @@
-include ':app-lab'
+include ':app-lab', ':lab-main'
 include ':app-systemlab'
 
 include ':lab-common'

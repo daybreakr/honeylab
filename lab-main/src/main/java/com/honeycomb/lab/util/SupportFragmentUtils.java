@@ -1,4 +1,4 @@
-package com.honeycomb.lab.common.util;
+package com.honeycomb.lab.util;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
