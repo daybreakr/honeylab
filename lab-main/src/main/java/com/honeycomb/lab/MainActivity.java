@@ -12,8 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.honeycomb.lab.main.R;
-import com.honeycomb.lab.util.Constants;
-import com.honeycomb.lab.util.SupportFragmentUtils;
+import com.honeycomb.lib.utilities.support.SupportFragmentUtils;
 import com.honeycomb.nav.INavPresenter;
 import com.honeycomb.nav.INavigation;
 import com.honeycomb.nav.NavigationFactory;

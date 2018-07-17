@@ -14,19 +14,53 @@ android {
 
         testInstrumentationRunner runners.androidJunit
     }
+
+    flavorDimensions 'function'
+
+    productFlavors {
+        playground {
+            applicationIdSuffix = ".playground"
+        }
+
+        ecg {
+            applicationIdSuffix = ".ecg"
+        }
+
+        keepalive {
+            applicationIdSuffix = ".keepalive"
+        }
+    }
 }
 
 dependencies {
-    implementation project(":lab-common")
-    implementation project(":lab-main")
-    implementation project(":lab-cardiograph")
-
+    //==============================================================================================
+    // Common
+    //==============================================================================================
     implementation project(":lib-common")
     implementation project(":lib-common-provider")
 
-    implementation project(":mod-heartbeat")
-    implementation project(":mod-keepalive")
+    implementation project(":lab-common")
+    implementation project(":lab-main")
 
+    //==============================================================================================
+    // Playground
+    //==============================================================================================
+    // empty
+
+    //==============================================================================================
+    // ECG
+    //==============================================================================================
+    ecgImplementation project(":lab-cardiograph")
+
+    //==============================================================================================
+    // Keep-alive
+    //==============================================================================================
+    keepaliveImplementation project(":mod-heartbeat")
+    keepaliveImplementation project(":mod-keepalive")
+
+    //==============================================================================================
+    // Test
+    //==============================================================================================
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit
 }

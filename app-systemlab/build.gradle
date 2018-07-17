@@ -19,12 +19,18 @@ android {
 }
 
 dependencies {
-    implementation project(":lab-common")
-    implementation project(":lab-main")
-
+    //==============================================================================================
+    // Common
+    //==============================================================================================
     implementation project(":lib-common")
     implementation project(":lib-common-provider")
 
+    implementation project(":lab-common")
+    implementation project(":lab-main")
+
+    //==============================================================================================
+    // Test
+    //==============================================================================================
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit
 }

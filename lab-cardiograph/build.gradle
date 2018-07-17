@@ -13,9 +13,12 @@ android {
 }
 
 dependencies {
-    implementation project(":lab-common")
+    implementation project(":lib-utilities")
+    implementation project(":lib-utilities-support")
 
     implementation project(":lib-common")
+
+    implementation project(":lab-common")
 
     implementation deps.support.recyclerview
     implementation deps.support.cardview

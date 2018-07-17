@@ -2,14 +2,7 @@
     package="com.honeycomb.lab">
 
     <application
-        android:name=".HoneylabApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name">
-
-        <meta-data
-            android:name="com.honeycomb.lab.MAIN_FRAGMENT"
-            android:value="com.honeycomb.lab.Playground" />
-
-    </application>
+        android:label="@string/app_name" />
 </manifest>

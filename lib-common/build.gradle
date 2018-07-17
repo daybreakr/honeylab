@@ -13,8 +13,4 @@ android {
     }
 }
 
-dependencies {
-    api project(":lib-utilities")
-}
-
 apply from: gradlePlugins.projectInfo

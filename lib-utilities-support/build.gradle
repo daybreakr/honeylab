@@ -7,18 +7,17 @@ android {
         minSdkVersion versions.minSdk
         versionCode project.versionCode
         versionName project.version
+
+        testInstrumentationRunner runners.androidJunit
     }
 }
 
 dependencies {
-    implementation project(":lib-utilities-support")
+    api deps.support.annotations
+    api deps.support.appcompat
 
-    implementation project(":lab-common")
-
-    implementation deps.support.design
-
-    implementation deps.honeycomb.nav
-    implementation deps.honeycomb.navImpl
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidJunit
 }
 
 apply from: gradlePlugins.projectInfo

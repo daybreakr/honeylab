@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/lib-common" />
             <option value="$PROJECT_DIR$/lib-common-provider" />
             <option value="$PROJECT_DIR$/lib-utilities" />
+            <option value="$PROJECT_DIR$/lib-utilities-support" />
             <option value="$PROJECT_DIR$/mod-heartbeat" />
             <option value="$PROJECT_DIR$/mod-keepalive" />
           </set>

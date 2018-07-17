@@ -12,7 +12,6 @@ android {
 
 dependencies {
     api deps.support.appcompat
-    api deps.support.design
 }
 
 apply from: gradlePlugins.projectInfo
