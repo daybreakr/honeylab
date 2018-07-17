@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.wakup;
+package com.honeycomb.mod.keepalive.wakeup;
 
 import java.util.LinkedList;
 import java.util.List;

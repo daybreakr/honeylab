@@ -14,5 +14,7 @@
             </intent-filter>
         </receiver>
 
+        <service android:name=".services.KeepAliveService" />
+
     </application>
 </manifest>

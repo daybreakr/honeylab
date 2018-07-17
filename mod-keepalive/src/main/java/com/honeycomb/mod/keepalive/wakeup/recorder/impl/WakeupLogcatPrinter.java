@@ -1,9 +1,9 @@
-package com.honeycomb.mod.keepalive.wakup.recorder.impl;
+package com.honeycomb.mod.keepalive.wakeup.recorder.impl;
 
 import android.util.Log;
 
-import com.honeycomb.mod.keepalive.wakup.WakeupEvent;
-import com.honeycomb.mod.keepalive.wakup.WakeupListener;
+import com.honeycomb.mod.keepalive.wakeup.WakeupEvent;
+import com.honeycomb.mod.keepalive.wakeup.WakeupListener;
 
 import java.util.Calendar;
 

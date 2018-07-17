@@ -4,9 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.honeycomb.mod.keepalive.wakup.Wakeup;
-import com.honeycomb.mod.keepalive.wakup.WakeupEvent;
-import com.honeycomb.mod.keepalive.wakup.WakeupIntents;
+import com.honeycomb.mod.keepalive.wakeup.Wakeup;
+import com.honeycomb.mod.keepalive.wakeup.WakeupEvent;
+import com.honeycomb.mod.keepalive.wakeup.WakeupIntents;
 
 public class WakeupReceiver extends BroadcastReceiver {
 

@@ -1,8 +1,8 @@
-package com.honeycomb.mod.keepalive.wakup.recorder;
+package com.honeycomb.mod.keepalive.wakeup.recorder;
 
-import com.honeycomb.mod.keepalive.wakup.WakeupPublisher;
-import com.honeycomb.mod.keepalive.wakup.recorder.impl.WakeupFileRecorder;
-import com.honeycomb.mod.keepalive.wakup.recorder.impl.WakeupLogcatPrinter;
+import com.honeycomb.mod.keepalive.wakeup.WakeupPublisher;
+import com.honeycomb.mod.keepalive.wakeup.recorder.impl.WakeupFileRecorder;
+import com.honeycomb.mod.keepalive.wakeup.recorder.impl.WakeupLogcatPrinter;
 
 public class WakeupRecorderRegistry {
 

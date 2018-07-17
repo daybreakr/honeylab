@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.wakup;
+package com.honeycomb.mod.keepalive.wakeup;
 
 public interface WakeupPublisher {
 

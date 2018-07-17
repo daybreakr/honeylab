@@ -1,11 +1,11 @@
-package com.honeycomb.mod.keepalive.wakup.recorder;
+package com.honeycomb.mod.keepalive.wakeup.recorder;
 
 import android.content.Context;
 
 import com.honeycomb.lib.common.AppCommon;
 import com.honeycomb.lib.utilities.Action;
 import com.honeycomb.lib.utilities.Switch;
-import com.honeycomb.mod.keepalive.wakup.Wakeup;
+import com.honeycomb.mod.keepalive.wakeup.Wakeup;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 

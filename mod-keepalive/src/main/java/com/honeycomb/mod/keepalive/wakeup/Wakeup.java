@@ -1,8 +1,9 @@
-package com.honeycomb.mod.keepalive.wakup;
+package com.honeycomb.mod.keepalive.wakeup;
 
 import com.honeycomb.lib.utilities.Action;
 import com.honeycomb.lib.utilities.Switch;
-import com.honeycomb.mod.keepalive.wakup.recorder.WakeupRecorder;
+import com.honeycomb.mod.keepalive.wakeup.impl.WakeupAlarm;
+import com.honeycomb.mod.keepalive.wakeup.recorder.WakeupRecorder;
 
 public class Wakeup implements WakeupPublisher {
     private static volatile Wakeup sInstance;
