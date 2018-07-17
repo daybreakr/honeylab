@@ -7,7 +7,7 @@ include ':lab-cardiograph'
 
 include ':lib-common'
 include ':lib-annotation'
-include ':lib-common-compiler'
+include ':lib-annotation-compiler'
 
 include ':mod-heartbeat'
 include ':mod-keepalive'

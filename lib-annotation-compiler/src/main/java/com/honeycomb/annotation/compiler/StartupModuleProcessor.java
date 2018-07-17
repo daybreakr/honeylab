@@ -1,4 +1,4 @@
-package com.honeycomb.lib.common.compiler;
+package com.honeycomb.annotation.compiler;
 
 import com.google.auto.service.AutoService;
 import com.honeycomb.annotation.StartupModule;
@@ -23,7 +23,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 
 @AutoService(Processor.class)
-public class AppCommonProcessor extends AbstractProcessor {
+public class StartupModuleProcessor extends AbstractProcessor {
     private Filer mFiler;
 
     private static boolean sGenerated = false;
@@ -61,28 +61,27 @@ public class AppCommonProcessor extends AbstractProcessor {
         }
 
         if (!sGenerated || !startupModules.isEmpty()) {
-            generateAppCommonRegistry(startupModules);
+            generateStartupModuleRegistry(startupModules);
         }
 
         return true;
     }
 
-    private void generateAppCommonRegistry(Set<TypeElement> startupModules) {
-        MethodSpec.Builder startBuilder = MethodSpec.methodBuilder("start")
+    private void generateStartupModuleRegistry(Set<TypeElement> startupModules) {
+        MethodSpec.Builder start = MethodSpec.methodBuilder("start")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(void.class);
-        for (Element startupModule : startupModules) {
-            startBuilder.addStatement("$T.getInstance().start()", startupModule.asType());
+        for (TypeElement startupModule : startupModules) {
+            start.addStatement("$T.getInstance().start()", startupModule.asType());
         }
-        MethodSpec start = startBuilder.build();
 
-        TypeSpec appCommonRegistry = TypeSpec.classBuilder("AppCommonRegistry")
+        TypeSpec startupModuleRegistry = TypeSpec.classBuilder("StartupModuleRegistry")
                 .addModifiers(Modifier.PUBLIC)
-                .addMethod(start)
+                .addMethod(start.build())
                 .build();
 
         try {
-            JavaFile.builder("com.honeycomb.lab", appCommonRegistry).build().writeTo(mFiler);
+            JavaFile.builder("com.honeycomb.lab", startupModuleRegistry).build().writeTo(mFiler);
             sGenerated = true;
         } catch (IOException e) {
             throw new RuntimeException(e);

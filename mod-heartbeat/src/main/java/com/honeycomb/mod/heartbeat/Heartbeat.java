@@ -1,8 +1,5 @@
 package com.honeycomb.mod.heartbeat;
 
-import com.honeycomb.annotation.StartupModule;
-
-@StartupModule
 public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
     private static HeartbeatOptions sOptions = new HeartbeatOptions();
 

@@ -15,8 +15,4 @@ android {
     }
 }
 
-dependencies {
-    api project(":lib-annotation")
-}
-
 apply from: gradlePlugins.projectInfo

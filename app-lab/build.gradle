@@ -22,8 +22,6 @@ dependencies {
     implementation project(":lab-cardiograph")
 
     implementation project(":lib-common")
-    implementation project(":lib-annotation")
-    annotationProcessor project(":lib-common-compiler")
 
     implementation project(":mod-heartbeat")
     implementation project(":mod-keepalive")

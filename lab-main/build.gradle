@@ -18,3 +18,5 @@ dependencies {
     implementation deps.honeycomb.nav
     implementation deps.honeycomb.navImpl
 }
+
+apply from: gradlePlugins.projectInfo
