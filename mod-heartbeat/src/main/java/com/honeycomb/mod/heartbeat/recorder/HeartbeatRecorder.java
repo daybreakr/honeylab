@@ -3,6 +3,7 @@ package com.honeycomb.mod.heartbeat.recorder;
 import android.content.Context;
 
 import com.honeycomb.lib.common.AppCommon;
+import com.honeycomb.lib.utilities.Switch;
 import com.honeycomb.mod.heartbeat.Heartbeat;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
@@ -16,9 +17,16 @@ public class HeartbeatRecorder {
     private static volatile HeartbeatRecorder sInstance;
 
     private final HeartbeatRecorderOptions mOptions;
+    private Switch mSwitch;
 
     private HeartbeatRecorder(HeartbeatRecorderOptions options) {
         mOptions = options;
+        mSwitch = new Switch().onStart(new com.honeycomb.lib.utilities.Action() {
+            @Override
+            public void onAction() {
+                onStart();
+            }
+        });
     }
 
     // Set before initialize
@@ -40,6 +48,10 @@ public class HeartbeatRecorder {
     }
 
     public void start() {
+        mSwitch.start();
+    }
+
+    private void onStart() {
         final Heartbeat heartbeat = Heartbeat.getInstance();
 
         if (mOptions.printLog) {

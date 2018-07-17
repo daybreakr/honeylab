@@ -10,9 +10,11 @@ android {
         minSdkVersion versions.minSdk
         versionCode project.versionCode
         versionName project.version
-
-        testInstrumentationRunner runners.androidJunit
     }
+}
+
+dependencies {
+    api project(":lib-utilities")
 }
 
 apply from: gradlePlugins.projectInfo

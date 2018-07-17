@@ -7,8 +7,6 @@ android {
         minSdkVersion versions.minSdk
         versionCode project.versionCode
         versionName project.version
-
-        testInstrumentationRunner runners.androidJunit
     }
 }
 

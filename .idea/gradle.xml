@@ -16,6 +16,8 @@
             <option value="$PROJECT_DIR$/lib-annotation" />
             <option value="$PROJECT_DIR$/lib-annotation-compiler" />
             <option value="$PROJECT_DIR$/lib-common" />
+            <option value="$PROJECT_DIR$/lib-common-provider" />
+            <option value="$PROJECT_DIR$/lib-utilities" />
             <option value="$PROJECT_DIR$/mod-heartbeat" />
             <option value="$PROJECT_DIR$/mod-keepalive" />
           </set>

@@ -5,7 +5,9 @@ include ':lab-common'
 include ':lab-main'
 include ':lab-cardiograph'
 
+include ':lib-utilities'
 include ':lib-common'
+include ':lib-common-provider'
 include ':lib-annotation'
 include ':lib-annotation-compiler'
 

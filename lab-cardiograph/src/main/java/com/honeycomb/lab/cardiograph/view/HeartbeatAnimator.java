@@ -5,8 +5,8 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-import com.honeycomb.util.state.State;
-import com.honeycomb.util.state.StateMachine;
+import com.honeycomb.lib.utilities.state.State;
+import com.honeycomb.lib.utilities.state.StateMachine;
 
 public class HeartbeatAnimator {
     private final ImageView mImageView;

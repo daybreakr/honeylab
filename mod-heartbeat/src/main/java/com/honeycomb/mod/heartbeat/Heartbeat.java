@@ -1,5 +1,9 @@
 package com.honeycomb.mod.heartbeat;
 
+import com.honeycomb.lib.utilities.Action;
+import com.honeycomb.lib.utilities.Switch;
+import com.honeycomb.mod.heartbeat.recorder.HeartbeatRecorder;
+
 public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
     private static HeartbeatOptions sOptions = new HeartbeatOptions();
 
@@ -7,6 +11,8 @@ public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
 
     private Pacemaker mPacemaker;
     private final HeartbeatPublisher mPublisher;
+    private HeartbeatRecorder mRecorder;
+    private final Switch mSwitch;
 
     private long mLastHeartbeat;
 
@@ -18,6 +24,31 @@ public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
         } else {
             mPublisher = new HeartbeatPublisherImpl();
         }
+
+        if (options.startHeartbeatRecorder) {
+            if (options.heartbeatRecorderOptions != null) {
+                HeartbeatRecorder.setOptions(options.heartbeatRecorderOptions);
+            }
+            mRecorder = HeartbeatRecorder.getInstance();
+        }
+
+        mSwitch = new Switch()
+                .onStart(new Action() {
+                    @Override
+                    public void onAction() {
+                        onStart();
+                    }
+                }).onStop(new Action() {
+                    @Override
+                    public void onAction() {
+                        onStop();
+                    }
+                }).onDestroy(new Action() {
+                    @Override
+                    public void onAction() {
+                        onDestroy();
+                    }
+                });
     }
 
     // Set before initialize
@@ -60,22 +91,38 @@ public class Heartbeat implements HeartbeatPublisher, Pacemaker.PacingCallback {
     }
 
     public void start() {
-        mPacemaker.start();
+        mSwitch.start();
     }
 
     public void stop() {
-        mPacemaker.stop();
+        mSwitch.stop();
     }
 
     public void destroy() {
-        clearHeartbeatListeners();
-        mPacemaker.destroy();
+        mSwitch.destroy();
     }
 
     public void flush() {
         if (mPublisher instanceof HeartbeatBufferPublisher) {
             ((HeartbeatBufferPublisher) mPublisher).flush();
         }
+    }
+
+    private void onStart() {
+        mPacemaker.start();
+
+        if (mRecorder != null) {
+            mRecorder.start();
+        }
+    }
+
+    private void onStop() {
+        mPacemaker.stop();
+    }
+
+    private void onDestroy() {
+        clearHeartbeatListeners();
+        mPacemaker.destroy();
     }
 
     @Override

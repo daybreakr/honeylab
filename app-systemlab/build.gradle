@@ -23,6 +23,7 @@ dependencies {
     implementation project(":lab-main")
 
     implementation project(":lib-common")
+    implementation project(":lib-common-provider")
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit
