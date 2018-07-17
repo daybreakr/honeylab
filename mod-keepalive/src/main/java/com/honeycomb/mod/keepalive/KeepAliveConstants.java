@@ -1,5 +1,5 @@
 package com.honeycomb.mod.keepalive;
 
 public interface KeepAliveConstants {
-    String TAG = "KeepAlive";
+    int WAKEUP_ALARM_REQUEST_CODE = 1001;
 }

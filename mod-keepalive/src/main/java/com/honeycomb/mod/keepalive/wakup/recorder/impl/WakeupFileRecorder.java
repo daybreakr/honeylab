@@ -1,24 +1,24 @@
-package com.honeycomb.mod.heartbeat.recorder.impl;
+package com.honeycomb.mod.keepalive.wakup.recorder.impl;
 
 import android.os.Environment;
 
 import com.honeycomb.lib.common.AppCommon;
-import com.honeycomb.mod.heartbeat.HeartbeatEvent;
-import com.honeycomb.mod.heartbeat.HeartbeatListener;
+import com.honeycomb.mod.keepalive.wakup.WakeupEvent;
+import com.honeycomb.mod.keepalive.wakup.WakeupListener;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class HeartbeatFileRecorder implements HeartbeatListener {
+public class WakeupFileRecorder implements WakeupListener {
     private static final String DIR_NAME = "HoneyLab";
-    private static final String FILE_NAME_SUFFIX = ".ecg";
+    private static final String FILE_NAME_SUFFIX = ".wkp";
 
     private static final String START_TAG = "[START]";
 
     private FileWriter mWriter;
 
-    public HeartbeatFileRecorder() {
+    public WakeupFileRecorder() {
         try {
             File file = getRecordFile();
             mWriter = new FileWriter(file, true);
@@ -34,13 +34,13 @@ public class HeartbeatFileRecorder implements HeartbeatListener {
     }
 
     @Override
-    public void onHeartbeat(HeartbeatEvent heartbeat) {
+    public void onWakeup(WakeupEvent wakeupEvent) {
         if (mWriter == null) {
             return;
         }
 
         try {
-            mWriter.append(formatHeartbeat(heartbeat)).append("\n");
+            mWriter.append(formatWakeup(wakeupEvent)).append("\n");
             mWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,8 +51,8 @@ public class HeartbeatFileRecorder implements HeartbeatListener {
         return START_TAG + "," + System.currentTimeMillis();
     }
 
-    private String formatHeartbeat(HeartbeatEvent heartbeat) {
-        return heartbeat.timestamp + "," + heartbeat.dt;
+    private String formatWakeup(WakeupEvent wakeupEvent) {
+        return wakeupEvent.receivedTime + "," + wakeupEvent.tag;
     }
 
     private File getRecordFile() throws IOException {

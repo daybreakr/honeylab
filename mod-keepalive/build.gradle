@@ -18,6 +18,8 @@ android {
 dependencies {
     implementation project(":lib-common")
 
+    implementation deps.andPermission
+
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit
 }

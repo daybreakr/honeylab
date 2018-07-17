@@ -8,7 +8,7 @@ import com.honeycomb.mod.heartbeat.HeartbeatListener;
 import java.util.Calendar;
 
 public class HeartbeatLogcatPrinter implements HeartbeatListener {
-    private static final String DEFAULT_TAG = "HeartbeatRecorder";
+    private static final String DEFAULT_TAG = "Heartbeat";
 
     private final String mTag;
 
