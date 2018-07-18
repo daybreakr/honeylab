@@ -3,6 +3,10 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- Wakeup record file needs these permissions to record wakeup events in external storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application>
 
         <receiver android:name=".wakeup.receivers.WakeupReceiver">

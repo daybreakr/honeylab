@@ -15,7 +15,11 @@ public class KeepAliveService extends Service {
 
     public static void start(Context context) {
         Intent intent = getServiceIntent(context);
-        context.startService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     public static void stop(Context context) {
