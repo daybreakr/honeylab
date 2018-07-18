@@ -1,4 +1,4 @@
-package com.honeycomb.mod.heartbeat.recorder.impl;
+package com.honeycomb.mod.heartbeat.recorder;
 
 import android.content.Context;
 import android.content.Intent;

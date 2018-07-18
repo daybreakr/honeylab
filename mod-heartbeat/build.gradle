@@ -16,7 +16,7 @@ android {
 }
 
 dependencies {
-    implementation project(":lib-utilities")
+    api project(":lib-utilities")
     implementation project(":lib-common")
 
     implementation deps.honeycomb.basement

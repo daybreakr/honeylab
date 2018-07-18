@@ -1,14 +1,16 @@
 package com.honeycomb.mod.heartbeat;
 
-import com.honeycomb.mod.heartbeat.recorder.HeartbeatRecorderOptions;
-
 public class HeartbeatOptions {
+    public long heartbeatInterval = 2 * 1000; // 2 seconds
 
-    public long heartbeatInterval = 2 * 1000; // 10 seconds
+    public RecorderOptions recorderOptions = new RecorderOptions();
 
-    public boolean useBuffer = true;
+    public static class RecorderOptions {
 
-    public boolean startHeartbeatRecorder = true;
+        public boolean enableLog = true;
 
-    public HeartbeatRecorderOptions heartbeatRecorderOptions = null;
+        public boolean enableBroadcast = true;
+
+        public boolean saveToFile = true;
+    }
 }
