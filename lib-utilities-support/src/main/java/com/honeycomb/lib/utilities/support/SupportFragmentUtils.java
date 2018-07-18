@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
@@ -26,7 +25,7 @@ public class SupportFragmentUtils {
         return null;
     }
 
-    public static void inflateFragment(FragmentActivity activity, @IdRes int containerViewId,
+    public static void inflateFragment(FragmentActivity activity, int containerViewId,
                                        Fragment fragment) {
         activity.getSupportFragmentManager().beginTransaction()
                 .replace(containerViewId, fragment)

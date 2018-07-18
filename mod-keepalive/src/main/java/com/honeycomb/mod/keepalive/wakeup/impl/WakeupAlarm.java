@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
-import com.honeycomb.lib.common.AppCommon;
+import com.honeycomb.sdk.common.AppCommon;
 import com.honeycomb.mod.keepalive.KeepAliveConstants;
 import com.honeycomb.mod.keepalive.wakeup.WakeupIntents;
 

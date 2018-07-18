@@ -2,7 +2,7 @@ package com.honeycomb.mod.keepalive.wakeup.recorder.impl;
 
 import android.os.Environment;
 
-import com.honeycomb.lib.common.AppCommon;
+import com.honeycomb.sdk.common.AppCommon;
 import com.honeycomb.mod.keepalive.wakeup.WakeupEvent;
 import com.honeycomb.mod.keepalive.wakeup.WakeupListener;
 

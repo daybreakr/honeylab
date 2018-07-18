@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.honeycomb.lib.common.provider">
+    package="com.honeycomb.sdk.common.provider">
 
     <application>
 
         <provider
             android:name=".AppCommonInitProvider"
-            android:authorities="${applicationId}.common.initprovider"
+            android:authorities="${applicationId}.sdk.common.initprovider"
             android:exported="false"
             android:initOrder="100" />
 

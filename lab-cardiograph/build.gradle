@@ -16,7 +16,7 @@ dependencies {
     implementation project(":lib-utilities")
     implementation project(":lib-utilities-support")
 
-    implementation project(":lib-common")
+    implementation project(':sdk-common')
 
     implementation project(":lab-common")
 

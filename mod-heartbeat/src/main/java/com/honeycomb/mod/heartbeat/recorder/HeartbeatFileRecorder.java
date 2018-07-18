@@ -3,7 +3,7 @@ package com.honeycomb.mod.heartbeat.recorder;
 import android.content.Context;
 import android.os.Environment;
 
-import com.honeycomb.lib.common.AppCommon;
+import com.honeycomb.sdk.common.AppCommon;
 import com.honeycomb.mod.heartbeat.HeartbeatEvent;
 import com.honeycomb.mod.heartbeat.HeartbeatListener;
 import com.yanzhenjie.permission.Action;

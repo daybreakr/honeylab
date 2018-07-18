@@ -16,8 +16,9 @@ android {
 }
 
 dependencies {
-    implementation project(":lib-utilities")
-    implementation project(":lib-common")
+    api project(":lib-utilities")
+
+    implementation project(':sdk-common')
 
     implementation deps.andPermission
 

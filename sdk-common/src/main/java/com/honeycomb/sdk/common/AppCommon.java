@@ -1,4 +1,4 @@
-package com.honeycomb.lib.common;
+package com.honeycomb.sdk.common;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,8 +19,8 @@ public class AppCommon {
     public static AppCommon getInstance() {
         synchronized (sLock) {
             if (sInstance == null) {
-                throw new IllegalStateException("Business SDK is not initialized in the process. "
-                        + "Make sure to call Sdk.initialize(Context) first.");
+                throw new IllegalStateException("AppCommon is not initialized in the process. "
+                        + "Make sure to call AppCommon.initialize(Context) first.");
             }
             return sInstance;
         }

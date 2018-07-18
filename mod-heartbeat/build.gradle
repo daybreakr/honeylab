@@ -17,7 +17,8 @@ android {
 
 dependencies {
     api project(":lib-utilities")
-    implementation project(":lib-common")
+
+    implementation project(':sdk-common')
 
     implementation deps.honeycomb.basement
     implementation deps.andPermission

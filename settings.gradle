@@ -7,10 +7,10 @@ include ':lab-cardiograph'
 
 include ':lib-utilities'
 include ':lib-utilities-support'
-include ':lib-common'
-include ':lib-common-provider'
 include ':lib-annotation'
 include ':lib-annotation-compiler'
 
+include ':sdk-common'
+include ':sdk-common-provider'
 include ':mod-heartbeat'
 include ':mod-keepalive'

@@ -1,11 +1,11 @@
-package com.honeycomb.lib.common.provider;
+package com.honeycomb.sdk.common.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.honeycomb.lib.common.AppCommon;
+import com.honeycomb.sdk.common.AppCommon;
 
 public class AppCommonInitProvider extends ContentProvider {
 

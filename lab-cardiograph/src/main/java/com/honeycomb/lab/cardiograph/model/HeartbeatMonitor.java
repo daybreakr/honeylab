@@ -2,7 +2,7 @@ package com.honeycomb.lab.cardiograph.model;
 
 import android.content.Context;
 
-import com.honeycomb.lib.common.AppCommon;
+import com.honeycomb.sdk.common.AppCommon;
 
 import java.util.ArrayList;
 import java.util.Collection;
