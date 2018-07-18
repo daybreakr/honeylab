@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.services;
+package com.honeycomb.mod.keepalive.keepalive.service;
 
 import android.annotation.TargetApi;
 import android.app.Notification;

@@ -1,6 +1,7 @@
 package com.honeycomb.mod.heartbeat;
 
 public class HeartbeatOptions {
+
     public long heartbeatInterval = 2 * 1000; // 2 seconds
 
     public RecorderOptions recorderOptions = new RecorderOptions();

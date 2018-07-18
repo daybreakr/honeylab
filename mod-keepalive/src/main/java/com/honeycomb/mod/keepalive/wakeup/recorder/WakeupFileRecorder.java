@@ -1,11 +1,11 @@
-package com.honeycomb.mod.heartbeat.recorder;
+package com.honeycomb.mod.keepalive.wakeup.recorder;
 
 import android.content.Context;
 import android.os.Environment;
 
+import com.honeycomb.mod.keepalive.wakeup.WakeupEvent;
+import com.honeycomb.mod.keepalive.wakeup.WakeupListener;
 import com.honeycomb.sdk.common.AppCommon;
-import com.honeycomb.mod.heartbeat.HeartbeatEvent;
-import com.honeycomb.mod.heartbeat.HeartbeatListener;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -16,38 +16,38 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class HeartbeatFileRecorder implements HeartbeatListener {
+public class WakeupFileRecorder implements WakeupListener {
     private static final String[] REQUIRED_PERMISSIONS = {
             Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE};
 
     private static final String DIR_NAME = "HoneyLab";
-    private static final String FILE_NAME_SUFFIX = ".ecg";
+    private static final String FILE_NAME_SUFFIX = ".wkp";
 
     private static final String START_TAG = "[START]";
 
     private FileWriter mWriter;
 
-    private final AtomicBoolean mIsFirstHeartbeatArrived = new AtomicBoolean(false);
-    private long mFirstHeartbeatTime;
-    private HeartbeatBufferedRecorder mBuffer;
+    private final AtomicBoolean mIsFirstEventArrived = new AtomicBoolean(false);
+    private long mFirstEventTime;
+    private WakeupBufferedRecorder mBuffer;
 
     @Override
-    public void onHeartbeat(HeartbeatEvent heartbeat) {
-        if (mIsFirstHeartbeatArrived.compareAndSet(false, true)) {
-            mFirstHeartbeatTime = System.currentTimeMillis();
+    public void onWakeup(WakeupEvent event) {
+        if (mIsFirstEventArrived.compareAndSet(false, true)) {
+            mFirstEventTime = System.currentTimeMillis();
 
             tryStartRecording();
         }
 
         if (mWriter == null) {
             if (mBuffer == null) {
-                mBuffer = new HeartbeatBufferedRecorder(this);
+                mBuffer = new WakeupBufferedRecorder(this);
             }
-            mBuffer.onHeartbeat(heartbeat);
+            mBuffer.onWakeup(event);
             return;
         }
 
-        record(heartbeat);
+        record(event);
     }
 
     private void tryStartRecording() {
@@ -75,8 +75,8 @@ public class HeartbeatFileRecorder implements HeartbeatListener {
     }
 
     private void onPermissionGranted() {
-        long startTime = mIsFirstHeartbeatArrived.get()
-                ? mFirstHeartbeatTime
+        long startTime = mIsFirstEventArrived.get()
+                ? mFirstEventTime
                 : System.currentTimeMillis();
         startRecording(startTime);
 
@@ -102,9 +102,9 @@ public class HeartbeatFileRecorder implements HeartbeatListener {
         }
     }
 
-    private void record(HeartbeatEvent heartbeat) {
+    private void record(WakeupEvent event) {
         try {
-            String record = formatHeartbeat(heartbeat);
+            String record = formatEvent(event);
             mWriter.append(record).append("\n");
             mWriter.flush();
         } catch (IOException e) {
@@ -128,7 +128,7 @@ public class HeartbeatFileRecorder implements HeartbeatListener {
         return START_TAG + "," + startTime;
     }
 
-    private String formatHeartbeat(HeartbeatEvent heartbeat) {
-        return heartbeat.timestamp + "," + heartbeat.dt;
+    private String formatEvent(WakeupEvent wakeupEvent) {
+        return wakeupEvent.receivedTime + "," + wakeupEvent.tag;
     }
 }

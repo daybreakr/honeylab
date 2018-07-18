@@ -2,58 +2,55 @@ package com.honeycomb.mod.keepalive.keepalive;
 
 import android.content.Context;
 
+import com.honeycomb.lib.utilities.SwitchShell;
+import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveService;
 import com.honeycomb.sdk.common.AppCommon;
-import com.honeycomb.lib.utilities.Action;
-import com.honeycomb.lib.utilities.Switch;
-import com.honeycomb.mod.keepalive.services.KeepAliveService;
 
-public class KeepAlive {
+public class KeepAlive extends SwitchShell {
+    private static KeepAliveOptions sOptions = new KeepAliveOptions();
+
     private static volatile KeepAlive sInstance;
 
-    private final Switch mSwitch;
+    private KeepAliveOptions mOptions;
 
-    private KeepAlive() {
-        mSwitch = new Switch().onStart(new Action() {
-            @Override
-            public void onAction() {
-                onStart();
-            }
-        }).onStop(new Action() {
-            @Override
-            public void onAction() {
-                onStop();
-            }
-        });
+    private KeepAlive(KeepAliveOptions options) {
+        mOptions = options;
+    }
+
+    // Set before initialize
+    public static void setOptions(KeepAliveOptions options) {
+        if (options != null) {
+            sOptions = options;
+        }
     }
 
     public static KeepAlive getInstance() {
         if (sInstance == null) {
             synchronized (KeepAlive.class) {
                 if (sInstance == null) {
-                    sInstance = new KeepAlive();
+                    sInstance = new KeepAlive(sOptions);
                 }
             }
         }
         return sInstance;
     }
 
-    public void start() {
-        mSwitch.start();
-    }
 
-    public void stop() {
-        mSwitch.stop();
-    }
-
-    private void onStart() {
+    @Override
+    protected void onStart() {
         Context context = AppCommon.getInstance().getApplicationContext();
 
-        KeepAliveService.start(context);
+        if (mOptions.enableForegroundService) {
+            KeepAliveService.start(context);
+        }
     }
 
-    private void onStop() {
+    @Override
+    protected void onStop() {
         Context context = AppCommon.getInstance().getApplicationContext();
 
-        KeepAliveService.stop(context);
+        if (mOptions.enableForegroundService) {
+            KeepAliveService.stop(context);
+        }
     }
 }

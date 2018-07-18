@@ -8,7 +8,7 @@ public class Heartbeat extends SwitchShell implements HeartbeatPublisher, Pacema
     private static volatile Heartbeat sInstance;
 
     private Pacemaker mPacemaker;
-    private HeartbeatPublisher mPublisher;
+    private final HeartbeatPublisher mPublisher;
 
     private long mLastHeartbeat;
 

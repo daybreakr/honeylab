@@ -1,11 +1,10 @@
-package com.honeycomb.mod.keepalive.receivers;
+package com.honeycomb.mod.keepalive.wakeup.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 import com.honeycomb.mod.keepalive.wakeup.Wakeup;
-import com.honeycomb.mod.keepalive.wakeup.WakeupEvent;
 import com.honeycomb.mod.keepalive.wakeup.WakeupIntents;
 
 public class WakeupReceiver extends BroadcastReceiver {
@@ -22,7 +21,7 @@ public class WakeupReceiver extends BroadcastReceiver {
         if (tag == null) {
             tag = action;
         }
-        WakeupEvent wakeupEvent = new WakeupEvent(receivedTime, tag);
-        Wakeup.getInstance().publishWakeupEvent(wakeupEvent);
+
+        Wakeup.getInstance().onWakeup(receivedTime, tag);
     }
 }

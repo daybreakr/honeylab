@@ -1,84 +1,62 @@
 package com.honeycomb.mod.keepalive.wakeup;
 
-import com.honeycomb.lib.utilities.Action;
-import com.honeycomb.lib.utilities.Switch;
-import com.honeycomb.mod.keepalive.wakeup.impl.WakeupAlarm;
-import com.honeycomb.mod.keepalive.wakeup.recorder.WakeupRecorder;
+import com.honeycomb.lib.utilities.SwitchShell;
+import com.honeycomb.mod.keepalive.wakeup.alarm.WakeupAlarm;
 
-public class Wakeup implements WakeupPublisher {
+public class Wakeup extends SwitchShell implements WakeupPublisher {
+    private static WakeupOptions sOptions = new WakeupOptions();
+
     private static volatile Wakeup sInstance;
 
-    private final WakeupPublisher mPublisher;
-    private WakeupRecorder mRecorder;
-    private final Switch mSwitch;
-
     private WakeupAlarm mWakeupAlarm;
+    private final WakeupPublisher mPublisher;
 
-    private Wakeup() {
-        mPublisher = new WakeupPublisherImpl();
-        mRecorder = WakeupRecorder.getInstance();
-        mSwitch = new Switch().onStart(new Action() {
-            @Override
-            public void onAction() {
-                onStart();
-            }
-        }).onStop(new Action() {
-            @Override
-            public void onAction() {
-                onStop();
-            }
-        }).onDestroy(new Action() {
-            @Override
-            public void onAction() {
-                onDestroy();
-            }
-        });
+    private Wakeup(WakeupOptions options) {
+        WakeupAssembler assembler = new WakeupAssembler(options);
 
-        mWakeupAlarm = new WakeupAlarm();
+        mWakeupAlarm = assembler.provideWakeupAlarm();
+        mPublisher = assembler.provideWakeupPublisher();
+
+        assembler.registerWakeupListeners(this);
+    }
+
+    // Set before initialize
+    public static void setOptions(WakeupOptions options) {
+        if (options != null) {
+            sOptions = options;
+        }
     }
 
     public static Wakeup getInstance() {
         if (sInstance == null) {
             synchronized (Wakeup.class) {
                 if (sInstance == null) {
-                    sInstance = new Wakeup();
+                    sInstance = new Wakeup(sOptions);
                 }
             }
         }
         return sInstance;
     }
 
-    public void start() {
-        mSwitch.start();
-    }
-
-    public void stop() {
-        mSwitch.stop();
-    }
-
-    public void destroy() {
-        mSwitch.destroy();
-    }
-
-    private void onStart() {
-        if (mRecorder != null) {
-            mRecorder.start();
-        }
-
+    @Override
+    protected void onStart() {
         if (mWakeupAlarm != null) {
             mWakeupAlarm.set();
         }
     }
 
-    private void onStop() {
+    @Override
+    protected void onStop() {
         if (mWakeupAlarm != null) {
             mWakeupAlarm.cancel();
         }
     }
 
-    private void onDestroy() {
-        clearWakeupListeners();
+    @Override
+    protected void onDestroy() {
         mWakeupAlarm = null;
+
+        clearWakeupListeners();
     }
 
     @Override
@@ -99,5 +77,11 @@ public class Wakeup implements WakeupPublisher {
     @Override
     public void publishWakeupEvent(WakeupEvent wakeupEvent) {
         mPublisher.publishWakeupEvent(wakeupEvent);
+    }
+
+    public void onWakeup(long wakeupTime, String tag) {
+        WakeupEvent event = new WakeupEvent(wakeupTime, tag);
+
+        publishWakeupEvent(event);
     }
 }

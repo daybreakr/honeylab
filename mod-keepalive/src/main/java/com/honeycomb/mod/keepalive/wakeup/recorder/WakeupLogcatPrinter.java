@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.wakeup.recorder.impl;
+package com.honeycomb.mod.keepalive.wakeup.recorder;
 
 import android.util.Log;
 

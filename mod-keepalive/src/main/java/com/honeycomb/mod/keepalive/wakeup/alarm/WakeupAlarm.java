@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.wakeup.impl;
+package com.honeycomb.mod.keepalive.wakeup.alarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -6,9 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
-import com.honeycomb.sdk.common.AppCommon;
 import com.honeycomb.mod.keepalive.KeepAliveConstants;
 import com.honeycomb.mod.keepalive.wakeup.WakeupIntents;
+import com.honeycomb.sdk.common.AppCommon;
 
 public class WakeupAlarm {
     private static final String WAKEUP_TAG = "Alarm";
@@ -22,11 +22,10 @@ public class WakeupAlarm {
 
     private PendingIntent mPendingIntent;
 
-    public WakeupAlarm() {
-        this(new Options());
-    }
-
     public WakeupAlarm(Options options) {
+        if (options == null) {
+            options = new Options();
+        }
         mOptions = options;
     }
 

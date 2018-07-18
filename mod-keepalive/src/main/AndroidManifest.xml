@@ -5,7 +5,7 @@
 
     <application>
 
-        <receiver android:name=".receivers.WakeupReceiver">
+        <receiver android:name=".wakeup.receivers.WakeupReceiver">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -14,7 +14,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".services.KeepAliveService" />
+        <service android:name=".keepalive.service.KeepAliveService" />
 
     </application>
 </manifest>
