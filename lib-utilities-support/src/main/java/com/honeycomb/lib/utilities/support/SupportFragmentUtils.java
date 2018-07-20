@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 
 public class SupportFragmentUtils {
 
@@ -30,5 +31,13 @@ public class SupportFragmentUtils {
         activity.getSupportFragmentManager().beginTransaction()
                 .replace(containerViewId, fragment)
                 .commit();
+    }
+
+    public static void addFragment(FragmentActivity activity, Fragment fragment, String tag) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        if (tag == null || fm.findFragmentByTag(tag) == null) {
+            fm.beginTransaction().add(fragment, tag).commit();
+            fm.executePendingTransactions();
+        }
     }
 }

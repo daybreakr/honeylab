@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.honeycomb.lab.lifecycle">
+
+    <application>
+        <activity
+            android:name=".LifecycleActivity"
+            android:label="@string/title_lifecycle">
+            <intent-filter>
+                <action android:name="com.honeycomb.nav.action.NAV_ITEM" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

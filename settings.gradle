@@ -4,6 +4,7 @@ include ':app-systemlab'
 include ':lab-common'
 include ':lab-main'
 include ':lab-cardiograph'
+include ':lab-lifecycle'
 
 include ':lib-utilities'
 include ':lib-utilities-support'

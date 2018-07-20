@@ -19,6 +19,11 @@ ext {
         supportLibrary: '27.1.1',
         honeycombLibrary: '0.0.10',
         butterKnife: '8.8.1',
+        lifecycle: "1.1.0",
+        room: '1.1.1',
+        paging: '1.0.0',
+        navigation: "1.0.0-alpha03",
+        work: "1.0.0-alpha04",
     ]
 
     deps = [
@@ -44,6 +49,31 @@ ext {
             navImpl: "com.honeycomb:honeycomb-nav-impl:$versions.honeycombLibrary",
             support: [
                 gson: "com.honeycomb.support:support-gson:2.8.5"
+            ],
+        ],
+        arch: [
+            lifecycle: [
+                extensions: "android.arch.lifecycle:extensions:${versions.lifecycle}",
+                runtime: "android.arch.lifecycle:runtime:${versions.lifecycle}",
+                viewModel: "android.arch.lifecycle:viewmodel:${versions.lifecycle}",
+                liveData: "android.arch.lifecycle:livedata:${versions.lifecycle}",
+
+                compiler: "android.arch.lifecycle:compiler:${versions.lifecycle}",
+                java8: "android.arch.lifecycle:common-java8:${versions.lifecycle}",
+            ],
+            room: [
+                runtime: "android.arch.persistence.room:runtime:${versions.room}",
+                compiler: "android.arch.persistence.room:compiler:${versions.room}",
+            ],
+            paging: [
+                runtime: "android.arch.paging:runtime:${versions.paging}",
+            ],
+            navigation: [
+                fragment: "android.arch.navigation:navigation-fragment:${versions.navigation}",
+                ui: "android.arch.navigation:navigation-ui:${versions.navigation}",
+            ],
+            work: [
+                runtime: "android.arch.work:work-runtime:${versions.work}",
             ],
         ],
         butterknife: [

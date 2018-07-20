@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        versionCode project.versionCode
+        versionName project.version
+
+        testInstrumentationRunner runners.androidJunit
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+}
+
+dependencies {
+    implementation project(":lib-utilities")
+    implementation project(":lib-utilities-support")
+
+    implementation project(":lab-common")
+
+    implementation deps.arch.lifecycle.runtime
+    annotationProcessor deps.arch.lifecycle.compiler
+}
+
+apply from: gradlePlugins.projectInfo
