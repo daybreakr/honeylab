@@ -10,3 +10,4 @@
 .externalNativeBuild
 
 /keystore
+/.idea/caches
