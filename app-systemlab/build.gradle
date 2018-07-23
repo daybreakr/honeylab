@@ -16,6 +16,13 @@ android {
     }
 
     apply from: gradlePlugins.signings
+
+    // Web don't need release builds in lab.
+    variantFilter { variant ->
+        if (variant.buildType.name == 'release') {
+            variant.setIgnore(true)
+        }
+    }
 }
 
 dependencies {
