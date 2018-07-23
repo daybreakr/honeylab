@@ -17,4 +17,9 @@ public class WakeupIntents {
         }
         return intent;
     }
+
+    public static void send(Context context, String tag) {
+        Intent intent = create(context, tag);
+        context.sendBroadcast(intent);
+    }
 }

@@ -20,5 +20,9 @@
 
         <service android:name=".keepalive.service.KeepAliveForegroundService" />
 
+        <service
+            android:name=".wakeup.job.WakeupJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 </manifest>

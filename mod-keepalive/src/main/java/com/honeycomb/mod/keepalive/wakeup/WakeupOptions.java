@@ -1,14 +1,19 @@
 package com.honeycomb.mod.keepalive.wakeup;
 
 import com.honeycomb.mod.keepalive.wakeup.alarm.WakeupAlarm;
+import com.honeycomb.mod.keepalive.wakeup.job.WakeupJob;
 
 public class WakeupOptions {
 
     public boolean enableWakeupAlarm = true;
 
-    public WakeupAlarm.Options wakeupAlarmOptions = new WakeupAlarm.Options();
+    public WakeupAlarm.Options wakeupAlarmOptions;
 
-    public RecorderOptions recorderOptions = new RecorderOptions();
+    public boolean enableWakeupJob = true;
+
+    public WakeupJob.Options wakeupJobOptions;
+
+    public RecorderOptions recorderOptions;
 
     public static class RecorderOptions {
 

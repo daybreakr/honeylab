@@ -1,6 +1,9 @@
 package com.honeycomb.mod.keepalive.wakeup;
 
+import android.os.Build;
+
 import com.honeycomb.mod.keepalive.wakeup.alarm.WakeupAlarm;
+import com.honeycomb.mod.keepalive.wakeup.job.WakeupJob;
 import com.honeycomb.mod.keepalive.wakeup.recorder.WakeupFileRecorder;
 import com.honeycomb.mod.keepalive.wakeup.recorder.WakeupLogcatPrinter;
 
@@ -22,8 +25,18 @@ public class WakeupAssembler {
         return null;
     }
 
+    WakeupJob provideWakeupJob() {
+        if (mOptions.enableWakeupJob && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return new WakeupJob(mOptions.wakeupJobOptions);
+        }
+        return null;
+    }
+
     void registerWakeupListeners(WakeupPublisher publisher) {
-        final WakeupOptions.RecorderOptions options = mOptions.recorderOptions;
+        WakeupOptions.RecorderOptions options = mOptions.recorderOptions;
+        if (options == null) {
+            options = new WakeupOptions.RecorderOptions();
+        }
 
         if (options.enableLog) {
             publisher.addWakeupListener(provideLogRecorder());

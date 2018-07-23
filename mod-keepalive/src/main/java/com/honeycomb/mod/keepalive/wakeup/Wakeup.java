@@ -2,6 +2,7 @@ package com.honeycomb.mod.keepalive.wakeup;
 
 import com.honeycomb.lib.utilities.SwitchShell;
 import com.honeycomb.mod.keepalive.wakeup.alarm.WakeupAlarm;
+import com.honeycomb.mod.keepalive.wakeup.job.WakeupJob;
 
 public class Wakeup extends SwitchShell implements WakeupPublisher {
     private static WakeupOptions sOptions = new WakeupOptions();
@@ -9,12 +10,14 @@ public class Wakeup extends SwitchShell implements WakeupPublisher {
     private static volatile Wakeup sInstance;
 
     private WakeupAlarm mWakeupAlarm;
+    private WakeupJob mWakeupJob;
     private final WakeupPublisher mPublisher;
 
     private Wakeup(WakeupOptions options) {
         WakeupAssembler assembler = new WakeupAssembler(options);
 
         mWakeupAlarm = assembler.provideWakeupAlarm();
+        mWakeupJob = assembler.provideWakeupJob();
         mPublisher = assembler.provideWakeupPublisher();
 
         assembler.registerWakeupListeners(this);
@@ -43,6 +46,10 @@ public class Wakeup extends SwitchShell implements WakeupPublisher {
         if (mWakeupAlarm != null) {
             mWakeupAlarm.set();
         }
+
+        if (mWakeupJob != null) {
+            mWakeupJob.schedule();
+        }
     }
 
     @Override
@@ -50,11 +57,16 @@ public class Wakeup extends SwitchShell implements WakeupPublisher {
         if (mWakeupAlarm != null) {
             mWakeupAlarm.cancel();
         }
+
+        if (mWakeupJob != null) {
+            mWakeupJob.cancel();
+        }
     }
 
     @Override
     protected void onDestroy() {
         mWakeupAlarm = null;
+        mWakeupJob = null;
 
         clearWakeupListeners();
     }
@@ -83,5 +95,11 @@ public class Wakeup extends SwitchShell implements WakeupPublisher {
         WakeupEvent event = new WakeupEvent(wakeupTime, tag);
 
         publishWakeupEvent(event);
+    }
+
+    public void onWakeupJob() {
+        if (mWakeupJob != null) {
+            mWakeupJob.scheduleNext();
+        }
     }
 }
