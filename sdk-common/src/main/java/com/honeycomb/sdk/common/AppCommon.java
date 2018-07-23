@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 public class AppCommon {
+    private static final String MOD_REGISTRY_CLASS = "com.honeycomb.sdk.ModRegistry";
+
     @SuppressLint("StaticFieldLeak")
     // AppCommon represents the application, it's OK to hold the applications Context here.
     private static volatile AppCommon sInstance;
@@ -42,6 +44,19 @@ public class AppCommon {
     }
 
     private void initialize() {
-        // TODO: Use annotation processor to generate the AppCommonRegistry class and start it.
+        try {
+            Class<?> clazz = Class.forName(MOD_REGISTRY_CLASS);
+            if (AppCommonRegistry.class.isAssignableFrom(clazz)) {
+                AppCommonRegistry registry = (AppCommonRegistry) clazz.newInstance();
+                registry.onConfigure(mApplicationContext);
+                registry.onStart(mApplicationContext);
+            }
+        } catch (ClassNotFoundException ignored) {
+            // ignored if no registry was found.
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

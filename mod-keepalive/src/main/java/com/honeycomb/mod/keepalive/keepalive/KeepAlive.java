@@ -3,7 +3,7 @@ package com.honeycomb.mod.keepalive.keepalive;
 import android.content.Context;
 
 import com.honeycomb.lib.utilities.SwitchShell;
-import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveService;
+import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveForegroundService;
 import com.honeycomb.sdk.common.AppCommon;
 
 public class KeepAlive extends SwitchShell {
@@ -41,7 +41,7 @@ public class KeepAlive extends SwitchShell {
         Context context = AppCommon.getInstance().getApplicationContext();
 
         if (mOptions.enableForegroundService) {
-            KeepAliveService.start(context);
+            KeepAliveForegroundService.start(context);
         }
     }
 
@@ -50,7 +50,7 @@ public class KeepAlive extends SwitchShell {
         Context context = AppCommon.getInstance().getApplicationContext();
 
         if (mOptions.enableForegroundService) {
-            KeepAliveService.stop(context);
+            KeepAliveForegroundService.stop(context);
         }
     }
 }

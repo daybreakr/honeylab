@@ -1,17 +1,16 @@
-package com.honeycomb.lab;
+package com.honeycomb.sdk;
 
-import android.app.Application;
+import android.content.Context;
 
 import com.honeycomb.mod.heartbeat.Heartbeat;
 import com.honeycomb.mod.keepalive.keepalive.KeepAlive;
 import com.honeycomb.mod.keepalive.wakeup.Wakeup;
+import com.honeycomb.sdk.common.AppCommonRegistry;
 
-public class HoneylabApplication extends Application {
+public class ModRegistry extends AppCommonRegistry {
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-
+    public void onStart(Context context) {
         // Start heartbeat
         Heartbeat.getInstance().start();
 

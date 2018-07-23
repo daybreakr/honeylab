@@ -11,7 +11,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-public class KeepAliveService extends Service {
+public class KeepAliveForegroundService extends Service {
 
     public static void start(Context context) {
         Intent intent = getServiceIntent(context);
@@ -28,7 +28,7 @@ public class KeepAliveService extends Service {
     }
 
     private static Intent getServiceIntent(Context context) {
-        return new Intent(context, KeepAliveService.class);
+        return new Intent(context, KeepAliveForegroundService.class);
     }
 
     @Override
@@ -62,6 +62,7 @@ public class KeepAliveService extends Service {
         startForeground(1, notification);
     }
 
+    @SuppressWarnings("deprecation")
     private Notification createForegroundNotification(NotificationManager nm) {
         Notification.Builder builder = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -85,11 +86,10 @@ public class KeepAliveService extends Service {
 
     @TargetApi(Build.VERSION_CODES.O)
     private String createKeepAliveNotificationChannel(NotificationManager nm) {
-        final String channelId = "keepalive";
-        final String channelName = "Keep Alive";
-        int importance = NotificationManager.IMPORTANCE_MIN;
+        final String channelId = "keep-alive-foreground";
+        final String channelName = "Keep Alive Foreground";
+        int importance = NotificationManager.IMPORTANCE_NONE;
         NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
-        channel.setDescription("");
         channel.enableLights(false);
         channel.enableVibration(false);
         channel.setShowBadge(false);

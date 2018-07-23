@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application android:name="com.honeycomb.lab.HoneylabApplication">
+    <application>
 
         <meta-data
             android:name="com.honeycomb.lab.MAIN_FRAGMENT"
