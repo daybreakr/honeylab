@@ -4,10 +4,18 @@ import android.content.Context;
 
 import com.honeycomb.mod.heartbeat.Heartbeat;
 import com.honeycomb.mod.keepalive.keepalive.KeepAlive;
+import com.honeycomb.mod.keepalive.keepalive.KeepAliveOptions;
 import com.honeycomb.mod.keepalive.wakeup.Wakeup;
 import com.honeycomb.sdk.common.AppCommonRegistry;
 
 public class ModRegistry extends AppCommonRegistry {
+
+    @Override
+    public void onConfigure(Context context) {
+        KeepAliveOptions keepAliveOptions = new KeepAliveOptions();
+        keepAliveOptions.enableForegroundService = false;
+        KeepAlive.setOptions(keepAliveOptions);
+    }
 
     @Override
     public void onStart(Context context) {
