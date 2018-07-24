@@ -35,6 +35,8 @@ dependencies {
     implementation project(":lab-common")
     implementation project(":lab-main")
 
+    implementation project(":mod-tap")
+
     //==============================================================================================
     // Test
     //==============================================================================================

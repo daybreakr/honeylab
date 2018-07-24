@@ -1,3 +1,6 @@
+project.version = "1.0"
+project.versionCode = 1
+
 apply plugin: 'com.android.library'
 
 android {
@@ -13,7 +16,7 @@ android {
 }
 
 dependencies {
-    api deps.honeycomb.basement
+    implementation project(":lib-utilities")
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidJunit

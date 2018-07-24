@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/lib-utilities-support" />
             <option value="$PROJECT_DIR$/mod-heartbeat" />
             <option value="$PROJECT_DIR$/mod-keepalive" />
+            <option value="$PROJECT_DIR$/mod-tap" />
             <option value="$PROJECT_DIR$/sdk-common" />
             <option value="$PROJECT_DIR$/sdk-common-provider" />
           </set>
