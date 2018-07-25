@@ -29,6 +29,11 @@ android {
         keepalive {
             applicationIdSuffix = ".keepalive"
         }
+
+        keepaliveCompat {
+            applicationIdSuffix = ".keepalive.compat"
+            targetSdkVersion 25
+        }
     }
 
     // Web don't need release builds in lab.
@@ -64,6 +69,12 @@ dependencies {
     //==============================================================================================
     keepaliveImplementation project(":mod-heartbeat")
     keepaliveImplementation project(":mod-keepalive")
+
+    //==============================================================================================
+    // Keep-alive Compat
+    //==============================================================================================
+    keepaliveCompatImplementation project(":mod-heartbeat")
+    keepaliveCompatImplementation project(":mod-keepalive")
 
     //==============================================================================================
     // Test
