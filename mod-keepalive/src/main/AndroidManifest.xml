@@ -13,6 +13,13 @@
 
         <service android:name=".keepalive.service.KeepAliveService" />
 
+        <activity
+            android:name=".keepalive.activity.OnePixelActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent" />
+
         <service
             android:name=".wakeup.job.WakeupJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />

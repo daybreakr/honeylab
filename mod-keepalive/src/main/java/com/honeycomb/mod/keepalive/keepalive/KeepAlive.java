@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 
 import com.honeycomb.lib.utilities.SwitchShell;
+import com.honeycomb.mod.keepalive.keepalive.activity.OnePixelActivityController;
 import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveForegroundService;
 import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveService;
 import com.honeycomb.sdk.common.AppCommon;
@@ -15,8 +16,14 @@ public class KeepAlive extends SwitchShell {
 
     private KeepAliveOptions mOptions;
 
+    private OnePixelActivityController mOnePixelActivityController;
+
     private KeepAlive(KeepAliveOptions options) {
         mOptions = options;
+
+        KeepAliveAssembler assembler = new KeepAliveAssembler(options);
+
+        mOnePixelActivityController = assembler.provideOnePixelActivityController();
     }
 
     // Set before initialize
@@ -49,6 +56,10 @@ public class KeepAlive extends SwitchShell {
         if (mOptions.enableBackgroundService && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             KeepAliveService.start(context);
         }
+
+        if (mOnePixelActivityController != null) {
+            mOnePixelActivityController.start();
+        }
     }
 
     @Override
@@ -61,6 +72,10 @@ public class KeepAlive extends SwitchShell {
 
         if (mOptions.enableBackgroundService && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             KeepAliveService.stop(context);
+        }
+
+        if (mOnePixelActivityController != null) {
+            mOnePixelActivityController.stop();
         }
     }
 }

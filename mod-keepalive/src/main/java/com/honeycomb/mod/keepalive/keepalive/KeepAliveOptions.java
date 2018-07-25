@@ -6,4 +6,6 @@ public class KeepAliveOptions {
 
     public boolean enableBackgroundService = true;
 
+    public boolean enableOnePixelActivity = true;
+
 }
