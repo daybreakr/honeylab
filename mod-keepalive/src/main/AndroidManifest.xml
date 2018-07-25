@@ -9,20 +9,24 @@
 
     <application android:persistent="true">
 
-        <receiver android:name=".wakeup.receivers.WakeupReceiver">
-            <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-
-                <action android:name="com.honeycomb.action.WAKEUP" />
-            </intent-filter>
-        </receiver>
-
         <service android:name=".keepalive.service.KeepAliveForegroundService" />
+
+        <service android:name=".keepalive.service.KeepAliveService" />
 
         <service
             android:name=".wakeup.job.WakeupJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".wakeup.receivers.WakeupReceiver">
+            <intent-filter android:priority="1000">
+                <!-- Sent by system to launch the process -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+
+                <!-- Sent by the Wakeup job service and AlarmManager -->
+                <action android:name="com.honeycomb.action.WAKEUP" />
+            </intent-filter>
+        </receiver>
 
     </application>
 </manifest>
