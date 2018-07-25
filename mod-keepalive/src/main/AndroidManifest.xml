@@ -28,7 +28,8 @@
             <intent-filter android:priority="1000">
                 <!-- Sent by system to launch the process -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-
+            </intent-filter>
+            <intent-filter android:priority="1000">
                 <!-- Only receive this implicit broadcast when targeting API level lower than 26 -->
                 <action android:name="android.intent.action.USER_PRESENT" />
 
