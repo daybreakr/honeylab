@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 public class KeepAliveService extends Service {
 
     public static void start(Context context) {
-        startKeepAliveService(context);
+        startForegroundActivity(context);
     }
 
     public static void stop(Context context) {

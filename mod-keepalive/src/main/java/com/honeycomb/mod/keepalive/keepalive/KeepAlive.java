@@ -14,15 +14,20 @@ public class KeepAlive extends SwitchShell {
     private static volatile KeepAlive sInstance;
 
     private KeepAliveOptions mOptions;
+    private KeepAliveControls mControls;
 
     private OnePixelActivityController mOnePixelActivityController;
 
     private KeepAlive(KeepAliveOptions options) {
-        mOptions = options;
-
         KeepAliveAssembler assembler = new KeepAliveAssembler(options);
+        mOptions = options;
+        mControls = assembler.provideControls();
 
         mOnePixelActivityController = assembler.provideOnePixelActivityController();
+
+        if (mControls != null) {
+            mControls.register(AppCommon.getInstance().getApplicationContext());
+        }
     }
 
     // Set before initialize
@@ -42,7 +47,6 @@ public class KeepAlive extends SwitchShell {
         }
         return sInstance;
     }
-
 
     @Override
     protected void onStart() {
@@ -75,6 +79,13 @@ public class KeepAlive extends SwitchShell {
 
         if (mOnePixelActivityController != null) {
             mOnePixelActivityController.stop();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mControls != null) {
+            mControls.unregister();
         }
     }
 }

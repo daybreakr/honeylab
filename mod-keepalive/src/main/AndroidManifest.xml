@@ -16,6 +16,7 @@
         <activity
             android:name=".keepalive.service.KeepAliveService$ForegroundActivity"
             android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/Translucent" />
 

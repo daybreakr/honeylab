@@ -12,6 +12,13 @@ public class KeepAliveAssembler {
         mOptions = options;
     }
 
+    KeepAliveControls provideControls() {
+        if (mOptions.enableControls) {
+            return new KeepAliveControls();
+        }
+        return null;
+    }
+
     OnePixelActivityController provideOnePixelActivityController() {
         if (mOptions.enableOnePixelActivity) {
             Context context = AppCommon.getInstance().getApplicationContext();
