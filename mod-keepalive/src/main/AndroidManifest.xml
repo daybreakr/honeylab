@@ -14,6 +14,12 @@
         <service android:name=".keepalive.service.KeepAliveService" />
 
         <activity
+            android:name=".keepalive.service.KeepAliveService$ForegroundActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent" />
+
+        <activity
             android:name=".keepalive.activity.OnePixelActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"

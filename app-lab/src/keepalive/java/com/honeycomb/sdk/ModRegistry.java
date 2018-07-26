@@ -1,6 +1,7 @@
 package com.honeycomb.sdk;
 
 import android.content.Context;
+import android.os.Build;
 
 import com.honeycomb.mod.heartbeat.Heartbeat;
 import com.honeycomb.mod.keepalive.keepalive.KeepAlive;
@@ -14,6 +15,9 @@ public class ModRegistry extends AppCommonRegistry {
     public void onConfigure(Context context) {
         KeepAliveOptions keepAliveOptions = new KeepAliveOptions();
         keepAliveOptions.enableForegroundService = false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            keepAliveOptions.enableBackgroundService = false;
+        }
         KeepAlive.setOptions(keepAliveOptions);
     }
 

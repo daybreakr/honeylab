@@ -1,7 +1,6 @@
 package com.honeycomb.mod.keepalive.keepalive;
 
 import android.content.Context;
-import android.os.Build;
 
 import com.honeycomb.lib.utilities.SwitchShell;
 import com.honeycomb.mod.keepalive.keepalive.activity.OnePixelActivityController;
@@ -53,7 +52,7 @@ public class KeepAlive extends SwitchShell {
             KeepAliveForegroundService.start(context);
         }
 
-        if (mOptions.enableBackgroundService && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (mOptions.enableBackgroundService) {
             KeepAliveService.start(context);
         }
 
@@ -70,7 +69,7 @@ public class KeepAlive extends SwitchShell {
             KeepAliveForegroundService.stop(context);
         }
 
-        if (mOptions.enableBackgroundService && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (mOptions.enableBackgroundService) {
             KeepAliveService.stop(context);
         }
 
