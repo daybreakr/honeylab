@@ -3,9 +3,10 @@ package com.honeycomb.mod.keepalive.keepalive;
 import android.content.Context;
 
 import com.honeycomb.lib.utilities.SwitchShell;
-import com.honeycomb.mod.keepalive.keepalive.activity.OnePixelActivityController;
-import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveForegroundService;
-import com.honeycomb.mod.keepalive.keepalive.service.KeepAliveService;
+import com.honeycomb.mod.keepalive.keepalive.background.KeepAliveBackgroundService;
+import com.honeycomb.mod.keepalive.keepalive.bound.KeepAliveBoundServiceController;
+import com.honeycomb.mod.keepalive.keepalive.foreground.KeepAliveForegroundService;
+import com.honeycomb.mod.keepalive.keepalive.foreground.OnePixelActivityController;
 import com.honeycomb.sdk.common.AppCommon;
 
 public class KeepAlive extends SwitchShell {
@@ -17,6 +18,7 @@ public class KeepAlive extends SwitchShell {
     private KeepAliveControls mControls;
 
     private OnePixelActivityController mOnePixelActivityController;
+    private KeepAliveBoundServiceController mBoundServiceController;
 
     private KeepAlive(KeepAliveOptions options) {
         KeepAliveAssembler assembler = new KeepAliveAssembler(options);
@@ -24,9 +26,10 @@ public class KeepAlive extends SwitchShell {
         mControls = assembler.provideControls();
 
         mOnePixelActivityController = assembler.provideOnePixelActivityController();
+        mBoundServiceController = assembler.provideBoundServiceController();
 
         if (mControls != null) {
-            mControls.register(AppCommon.getInstance().getApplicationContext());
+            mControls.register();
         }
     }
 
@@ -52,16 +55,20 @@ public class KeepAlive extends SwitchShell {
     protected void onStart() {
         Context context = AppCommon.getInstance().getApplicationContext();
 
+        if (mOnePixelActivityController != null) {
+            mOnePixelActivityController.start();
+        }
+
         if (mOptions.enableForegroundService) {
             KeepAliveForegroundService.start(context);
         }
 
-        if (mOptions.enableBackgroundService) {
-            KeepAliveService.start(context);
+        if (mBoundServiceController != null) {
+            mBoundServiceController.start();
         }
 
-        if (mOnePixelActivityController != null) {
-            mOnePixelActivityController.start();
+        if (mOptions.enableBackgroundService) {
+            KeepAliveBackgroundService.start(context);
         }
     }
 
@@ -69,16 +76,20 @@ public class KeepAlive extends SwitchShell {
     protected void onStop() {
         Context context = AppCommon.getInstance().getApplicationContext();
 
+        if (mOnePixelActivityController != null) {
+            mOnePixelActivityController.stop();
+        }
+
         if (mOptions.enableForegroundService) {
             KeepAliveForegroundService.stop(context);
         }
 
-        if (mOptions.enableBackgroundService) {
-            KeepAliveService.stop(context);
+        if (mBoundServiceController != null) {
+            mBoundServiceController.stop();
         }
 
-        if (mOnePixelActivityController != null) {
-            mOnePixelActivityController.stop();
+        if (mOptions.enableBackgroundService) {
+            KeepAliveBackgroundService.stop(context);
         }
     }
 

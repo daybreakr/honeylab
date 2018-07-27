@@ -2,7 +2,8 @@ package com.honeycomb.mod.keepalive.keepalive;
 
 import android.content.Context;
 
-import com.honeycomb.mod.keepalive.keepalive.activity.OnePixelActivityController;
+import com.honeycomb.mod.keepalive.keepalive.bound.KeepAliveBoundServiceController;
+import com.honeycomb.mod.keepalive.keepalive.foreground.OnePixelActivityController;
 import com.honeycomb.sdk.common.AppCommon;
 
 public class KeepAliveAssembler {
@@ -14,16 +15,26 @@ public class KeepAliveAssembler {
 
     KeepAliveControls provideControls() {
         if (mOptions.enableControls) {
-            return new KeepAliveControls();
+            return new KeepAliveControls(provideContext());
         }
         return null;
     }
 
     OnePixelActivityController provideOnePixelActivityController() {
         if (mOptions.enableOnePixelActivity) {
-            Context context = AppCommon.getInstance().getApplicationContext();
-            return new OnePixelActivityController(context);
+            return new OnePixelActivityController(provideContext());
         }
         return null;
+    }
+
+    KeepAliveBoundServiceController provideBoundServiceController() {
+        if (mOptions.enableBoundService) {
+            return new KeepAliveBoundServiceController(provideContext());
+        }
+        return null;
+    }
+
+    private Context provideContext() {
+        return AppCommon.getInstance().getApplicationContext();
     }
 }

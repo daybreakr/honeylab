@@ -9,19 +9,27 @@
 
     <application android:persistent="true">
 
-        <service android:name=".keepalive.service.KeepAliveForegroundService" />
-
-        <service android:name=".keepalive.service.KeepAliveService" />
-
         <activity
-            android:name=".keepalive.service.KeepAliveService$ForegroundActivity"
+            android:name=".keepalive.foreground.OnePixelActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/Translucent" />
 
+        <service
+            android:name=".keepalive.foreground.KeepAliveForegroundService"
+            android:exported="false" />
+
+        <service
+            android:name=".keepalive.bound.KeepAliveBoundService"
+            android:exported="false" />
+
+        <service
+            android:name=".keepalive.background.KeepAliveBackgroundService"
+            android:exported="false" />
+
         <activity
-            android:name=".keepalive.activity.OnePixelActivity"
+            android:name=".keepalive.background.KeepAliveBackgroundService$ForegroundActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"

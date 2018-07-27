@@ -9,30 +9,30 @@ public class KeepAliveControls {
     private static final String ACTION_START_KEEP_ALIVE = "com.honeycomb.action.START_KEEP_ALIVE";
     private static final String ACTION_STOP_KEEP_ALIVE = "com.honeycomb.action.STOP_KEEP_ALIVE";
 
+    private final Context mContext;
+
     private final IntentFilter mFilter;
-    private final BroadcastReceiver mReceiver;
+    private BroadcastReceiver mReceiver;
 
-    private Context mContext;
+    KeepAliveControls(Context context) {
+        mContext = context.getApplicationContext();
 
-    KeepAliveControls() {
         mFilter = new IntentFilter();
         mFilter.addAction(ACTION_START_KEEP_ALIVE);
         mFilter.addAction(ACTION_STOP_KEEP_ALIVE);
-
-        mReceiver = new KeepAliveControlsReceiver();
     }
 
-    public synchronized void register(Context context) {
-        if (mContext == null) {
-            mContext = context;
+    public synchronized void register() {
+        if (mReceiver == null) {
+            mReceiver = new KeepAliveControlsReceiver();
             mContext.registerReceiver(mReceiver, mFilter);
         }
     }
 
     public synchronized void unregister() {
-        if (mContext != null) {
+        if (mReceiver != null) {
             mContext.unregisterReceiver(mReceiver);
-            mContext = null;
+            mReceiver = null;
         }
     }
 

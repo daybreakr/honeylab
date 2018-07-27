@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.keepalive.activity;
+package com.honeycomb.mod.keepalive.keepalive.foreground;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;

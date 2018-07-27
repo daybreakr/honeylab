@@ -1,4 +1,4 @@
-package com.honeycomb.mod.keepalive.keepalive.service;
+package com.honeycomb.mod.keepalive.keepalive.background;
 
 import android.app.Activity;
 import android.app.Service;
@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-public class KeepAliveService extends Service {
+public class KeepAliveBackgroundService extends Service {
 
     public static void start(Context context) {
         startForegroundActivity(context);
@@ -18,23 +18,35 @@ public class KeepAliveService extends Service {
     }
 
     private static void startForegroundActivity(Context context) {
-        Intent intent = new Intent(context, ForegroundActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        try {
+            Intent intent = new Intent(context, ForegroundActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void startKeepAliveService(Context context) {
-        Intent intent = getServiceIntent(context);
-        context.startService(intent);
+        try {
+            Intent intent = getServiceIntent(context);
+            context.startService(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void stopKeepAliveService(Context context) {
-        Intent intent = getServiceIntent(context);
-        context.stopService(intent);
+        try {
+            Intent intent = getServiceIntent(context);
+            context.stopService(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static Intent getServiceIntent(Context context) {
-        return new Intent(context, KeepAliveService.class);
+        return new Intent(context, KeepAliveBackgroundService.class);
     }
 
     @Override
