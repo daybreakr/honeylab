@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 public class KeepAliveBackgroundService extends Service {
 
     public static void start(Context context) {
-        startForegroundActivity(context);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundActivity(context);
+        } else {
+            startKeepAliveService(context);
+        }
     }
 
     public static void stop(Context context) {
