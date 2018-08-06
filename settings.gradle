@@ -10,6 +10,7 @@ include ':lib-utilities'
 include ':lib-utilities-support'
 include ':lib-annotation'
 include ':lib-annotation-compiler'
+include ':lib-invisible'
 
 include ':sdk-common'
 include ':sdk-common-provider'
