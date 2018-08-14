@@ -1,4 +1,4 @@
-package com.honeycomb.mod.process.monitor;
+package com.honeycomb.mod.process.monitor.impl;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 
+import com.honeycomb.mod.process.monitor.ForegroundAppDetector;
 import com.jaredrummler.android.processes.models.AndroidAppProcess;
 
 import java.io.File;
@@ -17,13 +18,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-class ProcessUtils {
-    private static final String TAG = "ProcessUtils";
+public class ProcessDetector implements ForegroundAppDetector {
+    private static final String TAG = "ProcessDetector";
 
-    private ProcessUtils() {
-    }
+    private static final boolean USE_CACHED_LAUNCHERS = true;
 
-    static String getTopProcess(Context context) {
+    private Set<String> mCachedLaunchers;
+
+    @Override
+    public String getForegroundPackage(Context context) {
         List<AndroidAppProcess> processes = getForegroundApps(context, getLaunchers(context));
         if (processes.isEmpty()) {
             return null;
@@ -33,7 +36,17 @@ class ProcessUtils {
         return processes.get(0).getPackageName();
     }
 
-    private static Set<String> getLaunchers(Context context) {
+    private Set<String> getLaunchers(Context context) {
+        if (USE_CACHED_LAUNCHERS) {
+            if (mCachedLaunchers == null) {
+                mCachedLaunchers = queryLaunchers(context);
+            }
+            return mCachedLaunchers;
+        }
+        return queryLaunchers(context);
+    }
+
+    private Set<String> queryLaunchers(Context context) {
         Set<String> launchers = new HashSet<>();
 
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -49,8 +62,8 @@ class ProcessUtils {
         return launchers;
     }
 
-    private static List<AndroidAppProcess> getForegroundApps(Context context,
-                                                             Set<String> inclusive) {
+    private List<AndroidAppProcess> getForegroundApps(Context context,
+                                                      Set<String> inclusive) {
         List<AndroidAppProcess> processes = new ArrayList<>();
         File[] files = new File("/proc").listFiles();
         PackageManager pm = context.getPackageManager();
@@ -87,7 +100,7 @@ class ProcessUtils {
         return processes;
     }
 
-    private static final Comparator<AndroidAppProcess> FOREGROUND_COMPARATOR =
+    private final Comparator<AndroidAppProcess> FOREGROUND_COMPARATOR =
             new Comparator<AndroidAppProcess>() {
                 @Override
                 public int compare(AndroidAppProcess processA, AndroidAppProcess processB) {

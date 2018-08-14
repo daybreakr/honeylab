@@ -1,1 +1,12 @@
-<manifest package="com.honeycomb.mod.process.monitor" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.honeycomb.mod.process.monitor">
+
+    <!-- App Checker required to get recent tasks -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- App Checker required to get MOVE_TO_FOREGROUND events -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+</manifest>

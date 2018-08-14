@@ -7,14 +7,16 @@ class ProcessMonitorThread extends Thread {
     private static final String TAG = "ProcessMonitor";
 
     private final Context mContext;
+    private final ForegroundAppDetector mDetector;
     private final long mInterval;
 
     private boolean mStopped;
 
-    private String mTopProcess;
+    private String mTopPackage;
 
-    ProcessMonitorThread(Context context, long interval) {
+    ProcessMonitorThread(Context context, ForegroundAppDetector detector, long interval) {
         mContext = context.getApplicationContext();
+        mDetector = detector;
         mInterval = Math.max(10, interval);
     }
 
@@ -40,17 +42,17 @@ class ProcessMonitorThread extends Thread {
     }
 
     private void mainLoop() {
-        String last = mTopProcess;
-        mTopProcess = ProcessUtils.getTopProcess(mContext);
+        String last = mTopPackage;
+        mTopPackage = mDetector.getForegroundPackage(mContext);
 
-        printTopProcess(last);
+        printTopPackage(last);
     }
 
-    private void printTopProcess(String last) {
-        if (last == null) {
-            Log.i(TAG, "Top process: " + mTopProcess);
-        } else if (!last.equals(mTopProcess)) {
-            Log.i(TAG, "Top process changed from " + last + " to " + mTopProcess);
+    private void printTopPackage(String last) {
+        if (last == null && mTopPackage != null) {
+            Log.i(TAG, "Top package: " + mTopPackage);
+        } else if (last != null && !last.equals(mTopPackage)) {
+            Log.i(TAG, "Top package changed from " + last + " to " + mTopPackage);
         }
     }
 }

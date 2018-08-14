@@ -19,6 +19,8 @@ dependencies {
     implementation project(':sdk-common')
 
     implementation 'com.jaredrummler:android-processes:1.1.1'
+
+    implementation 'com.rvalerio:fgchecker:1.1.0'
 }
 
 apply from: gradlePlugins.projectInfo
