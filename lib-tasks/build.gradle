@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        versionName project.version
+
+        testInstrumentationRunner runners.androidJunit
+    }
+}
+
+dependencies {
+    api deps.support.annotations
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidJunit
+}
+
+apply from: gradlePlugins.projectInfo

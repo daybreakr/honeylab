@@ -8,6 +8,7 @@ include ':lab-lifecycle'
 
 include ':lib-utilities'
 include ':lib-utilities-support'
+include ':lib-tasks'
 include ':lib-annotation'
 include ':lib-annotation-compiler'
 include ':lib-invisible'
