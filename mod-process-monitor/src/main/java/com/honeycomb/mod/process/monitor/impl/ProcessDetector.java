@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 
-import com.honeycomb.mod.process.monitor.ForegroundAppDetector;
 import com.jaredrummler.android.processes.models.AndroidAppProcess;
 
 import java.io.File;

@@ -1,58 +1,36 @@
 package com.honeycomb.mod.process.monitor;
 
-import android.content.Context;
-import android.util.Log;
+public abstract class ProcessMonitorThread extends Thread {
 
-class ProcessMonitorThread extends Thread {
-    private static final String TAG = "ProcessMonitor";
+    public interface OnForegroundProcessChangedListener {
 
-    private final Context mContext;
-    private final ForegroundAppDetector mDetector;
-    private final long mInterval;
+        void onForegroundProcessChanged(String oldProcessName, String newProcessName);
+    }
+
+    private OnForegroundProcessChangedListener mListener;
 
     private boolean mStopped;
 
-    private String mTopPackage;
-
-    ProcessMonitorThread(Context context, ForegroundAppDetector detector, long interval) {
-        mContext = context.getApplicationContext();
-        mDetector = detector;
-        mInterval = Math.max(10, interval);
+    public void setOnProcessChangeListener(OnForegroundProcessChangedListener listener) {
+        mListener = listener;
     }
 
-    void startMonitor() {
+    public void startMonitor() {
         mStopped = false;
         start();
     }
 
-    void stopMonitor() {
+    public void stopMonitor() {
         mStopped = true;
     }
 
-    @Override
-    public void run() {
-        try {
-            while (!mStopped) {
-                mainLoop();
-                Thread.sleep(mInterval);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public boolean isStopped() {
+        return mStopped;
     }
 
-    private void mainLoop() {
-        String last = mTopPackage;
-        mTopPackage = mDetector.getForegroundPackage(mContext);
-
-        printTopPackage(last);
-    }
-
-    private void printTopPackage(String last) {
-        if (last == null && mTopPackage != null) {
-            Log.i(TAG, "Top package: " + mTopPackage);
-        } else if (last != null && !last.equals(mTopPackage)) {
-            Log.i(TAG, "Top package changed from " + last + " to " + mTopPackage);
+    protected void invokeForegroundProcessChanged(String oldProcessName, String newProcessName) {
+        if (mListener != null) {
+            mListener.onForegroundProcessChanged(oldProcessName, newProcessName);
         }
     }
 }

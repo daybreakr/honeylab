@@ -1,8 +1,13 @@
 package com.honeycomb.mod.process.monitor;
 
+import android.util.Log;
+
 import com.honeycomb.lib.utilities.SwitchShell;
 
-public class ProcessMonitor extends SwitchShell {
+public class ProcessMonitor extends SwitchShell
+        implements ProcessMonitorThread.OnForegroundProcessChangedListener {
+    private static final String TAG = "ProcessMonitor";
+
     private static ProcessMonitorOptions sOptions = new ProcessMonitorOptions();
 
     private static volatile ProcessMonitor sInstance;
@@ -34,6 +39,7 @@ public class ProcessMonitor extends SwitchShell {
     @Override
     protected void onStart() {
         mMonitorThread = mAssembler.provideMonitorThread();
+        mMonitorThread.setOnProcessChangeListener(this);
         mMonitorThread.startMonitor();
     }
 
@@ -41,5 +47,10 @@ public class ProcessMonitor extends SwitchShell {
     protected void onStop() {
         mMonitorThread.stopMonitor();
         mMonitorThread = null;
+    }
+
+    @Override
+    public void onForegroundProcessChanged(String oldProcessName, String newProcessName) {
+        Log.i(TAG, "Top package changed from " + oldProcessName + " to " + newProcessName);
     }
 }

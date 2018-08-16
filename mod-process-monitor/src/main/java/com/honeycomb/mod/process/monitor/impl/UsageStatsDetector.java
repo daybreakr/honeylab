@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
 
-import com.honeycomb.mod.process.monitor.ForegroundAppDetector;
 import com.rvalerio.fgchecker.AppChecker;
 
 import java.util.concurrent.atomic.AtomicBoolean;
