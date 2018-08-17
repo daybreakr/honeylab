@@ -15,6 +15,7 @@ dependencies {
     api deps.support.annotations
 
     testImplementation deps.test.junit
+    testImplementation deps.test.mockito
     androidTestImplementation deps.test.androidJunit
 }
 

@@ -136,6 +136,8 @@ class TaskImpl<TResult> extends Task<TResult> {
             mComplete = true;
             mException = exception;
         }
+
+        mDeliverers.deliverComplete(this);
     }
 
     public boolean trySetException(@NonNull Exception exception) {

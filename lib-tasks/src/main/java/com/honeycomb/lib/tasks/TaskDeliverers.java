@@ -11,7 +11,7 @@ class TaskDeliverers<TResult> {
 
     private final Object mLock = new Object();
 
-    public final void addDeliverer(@NonNull TaskDeliverer<TResult> deliverer) {
+    public void addDeliverer(@NonNull TaskDeliverer<TResult> deliverer) {
         synchronized (mLock) {
             if (mDeliverers == null) {
                 mDeliverers = new ArrayDeque<>();
@@ -21,7 +21,7 @@ class TaskDeliverers<TResult> {
         }
     }
 
-    public final void deliverComplete(@NonNull Task<TResult> task) {
+    public void deliverComplete(@NonNull Task<TResult> task) {
         synchronized (mLock) {
             if (mDeliverers == null || mDelivered) {
                 return;
