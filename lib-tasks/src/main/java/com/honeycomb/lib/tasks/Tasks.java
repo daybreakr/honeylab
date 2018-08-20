@@ -61,7 +61,7 @@ public final class Tasks {
         return getResult(task);
     }
 
-    public static <TResult> TResult awat(@NonNull Task<TResult> task, long timeout,
+    public static <TResult> TResult await(@NonNull Task<TResult> task, long timeout,
                                          @NonNull TimeUnit timeUnit)
             throws ExecutionException, InterruptedException, TimeoutException {
         requireNonNull(task);

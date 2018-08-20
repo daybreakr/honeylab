@@ -7,13 +7,16 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.concurrent.Executor;
 
+import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 @SuppressWarnings("unchecked")
 public class OnFailureDelivererTest {
+    private static final long DEFAULT_VERIFICATION_DELAY = 400;
+
     @Mock
     private OnFailureListener mOnFailureListener;
     @Mock
@@ -31,7 +34,7 @@ public class OnFailureDelivererTest {
         OnFailureDeliverer deliverer = new OnFailureDeliverer(mExecutor, mOnFailureListener);
         deliverer.onComplete(mTask);
 
-        verify(mOnFailureListener).onFailure(mException);
+        verify(mOnFailureListener, timeout(DEFAULT_VERIFICATION_DELAY)).onFailure(mException);
     }
 
     @Test
@@ -41,7 +44,7 @@ public class OnFailureDelivererTest {
         OnFailureDeliverer deliverer = new OnFailureDeliverer(mExecutor, mOnFailureListener);
         deliverer.onComplete(mTask);
 
-        verifyNoMoreInteractions(mOnFailureListener);
+        verifyZeroInteractions(mOnFailureListener);
     }
 
     @Test
@@ -61,6 +64,6 @@ public class OnFailureDelivererTest {
         deliverer.cancel();
         deliverer.onComplete(mTask);
 
-        verifyNoMoreInteractions(mOnFailureListener);
+        verifyZeroInteractions(mOnFailureListener);
     }
 }
